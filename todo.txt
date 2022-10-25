@@ -1,0 +1,4 @@
+Spiegare nell introduzione SAP company
+talk about gpt tokenizer
+
+https://jalammar.github.io/illustrated-gpt2/
