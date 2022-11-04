@@ -1,0 +1,23 @@
+- List of Figures
+- List of Tables
+- ACK
+
+- Introduction
+- Related works
+- Method
+    - Taxonomy
+    - Datasets
+    - Templates
+    - Models
+    - Ticket generation
+    - Survey ( Test data )
+    - Results ( Metrics )
+    - Additional Experiments
+        - Paraphraser models
+        - Topic modeling generation
+        - Finetune
+- Use cases
+    - Classification
+    - Anonymization
+    - Summarization
+- Conclusion

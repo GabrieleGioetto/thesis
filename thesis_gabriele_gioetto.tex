@@ -1,4 +1,5 @@
 \documentclass{article}
+
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{changepage}
@@ -15,11 +16,18 @@
 
 \maketitle
 
+\newpage
+
+\tableofcontents
+
+\newpage
+
     
     
     
 
-\section{Introduction}
+\section{Introduction} \index{Introduction}
+
 An HR (Human Resource) department in a large organization receives inquiries\slash requests from employees on multiple topics, quite different from one another. As an example, an employee can send requests dealing with health conditions, compensation/taxation, events of life (marriage, death of a relative\dots). \\
 These data can be used for many different queries that can be useful for analysis purposes (Example: `How many people have had COVID during 2021`). However, HR tickets typically contain personal data, that cannot be processed without the consent of the data subject according to the European privacy regulation (GDPR). \\
 To be able to process documents with personal data, we can identifythe pieces of information that qualify as personal data in a communication and subsequently anonymize such information using the appropriate techniques.
@@ -150,13 +158,14 @@ The Pile dataset is composed by 22 diverse subsets, which can be grouped in 5 ca
     \item Dialogue ( \textit{Subtitles}, ... )
     \item Misc ( \textit{Github}, ... )
 \end{itemize}
+\vspace{0.5cm}
 The parameters used for the generation of the next token are:
 \begin{itemize}
     \item \textit{min\_length}: minimum number of words created by a gpt generation
     \item \textit{max\_length}: the max length of the sequence to be generated.  
     \item \textit{top\_k}: the k most likely next words are filtered and the probability mass is redistributed among only these k words.
     
-    \item \textit{top\_p}: samples from the smallest possible set of words whose cumulative probability exceeds the probability p.
+    \item \textit{top\_p}: the next words are sampled from the smallest possible set of words whose cumulative probability exceeds the probability p.
     \item \textit{temperature}: the value $T$ used to module the logits distribution. The higher the value of $T$ the higher the entropy of the logits distribution will be
     \begin{equation}
         p_i = \frac{exp(x_i/T)}{\sum_j exp(x_j/T)}   
@@ -164,17 +173,22 @@ The parameters used for the generation of the next token are:
     \item \textit{repetition\_penalty}: the parameter $\theta$ for repetition penalty. 1.0 means no penalty \\
     Given a list of generated tokens $G$, 
      \begin{equation}
-        p_i = \frac{exp(x_i/T \cdot I(i \in G))}{\sum_j exp(x_j/T \cdot I(j \in G))}, I(c) = \theta if c is True else 1
+        p_i = \frac{exp(x_i/T \cdot I(i \in G))}{\sum_j exp(x_j/T \cdot I(j \in G))}
     \end{equation}
+    \begin{center}
+    $I(c) = \theta$ if $c$ is True else 1
+    \end{center}
+
     So the logits distribution of the token change based on if the token has already been generated before.
 
-    \item \textit{length\_penalty}: \textit{length\_penalty} $>$ 0.0 promotes longer sequences, while \textit{length\_penalty} $<$ 0.0 encourages shorter sequences.
-    \item \textit{no\_repeat\_ngram\_size}: If set to int > 0, all ngrams of that size can only occur once.
-     TODO insert image
-    \item \textit{num\_beams}: Number of beams for beam search
-     TODO insert image
-    \item \textit{do\_sample}: If set to `False` greedy decoding is used. Otherwise, sampling is used
-     TODO insert image
+    \item \textit{length\_penalty}: \textit{length\_penalty} $>$ 0 promotes longer sequences, while \linebreak 
+    \textit{length\_penalty} $<$ 0 encourages shorter sequences.
+    \item \textit{no\_repeat\_ngram\_size}: If set to int $>$ 0, all ngrams of that size can only occur once \\
+    \includegraphics[width=\textwidth]{no_ngram_thesis.drawio.png}
+    \item \textit{num\_beams}: Number of beams for beam search. They beams are the number of 'paths' that are considered when choosing the next token \\
+    \includegraphics[width=0.5\textwidth]{num_beams.drawio.png}
+    \item \textit{do\_sample}: If set to `False` greedy decoding is used ( the most probable token is always chosen). Otherwise, sampling is used ( the next token is chosen sampling from the distribution of possible next tokens )
+    \includegraphics[width=\textwidth]{do_sample.drawio.png}
     \item \textit{bad\_words}: List of words that are not allowed to be generated.
     \item \textit{force\_words}: List of words that must be generated in a generation.
     
@@ -206,9 +220,12 @@ force words & [\space] \\ \hline
 
 The GPT architecture is based on the original Transformers paper, which introduced two types of transformers blocks: the encoder block and the decoder block. GPT is assembled by a stack of decoder blocks, which are composed by:
 \begin{itemize}
+    \item Normalization Layers
     \item Masked Self-Attention Layer
     \item Feed Forward Neural Network Layer
 \end{itemize}
+
+
 
 \includegraphics[width=\textwidth]{GPT-vs-GPT-J-uai-1440x933.jpg}
 
@@ -220,4 +237,4 @@ The GPT architecture is based on the original Transformers paper, which introduc
 
     
 
-\end{document}
+\end{document} \\

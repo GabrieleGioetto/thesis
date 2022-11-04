@@ -2,3 +2,8 @@ Spiegare nell introduzione SAP company
 talk about gpt tokenizer
 
 https://jalammar.github.io/illustrated-gpt2/
+
+
+https://dugas.ch/artificial_curiosity/GPT_architecture.html
+
+https://arxiv.org/pdf/2104.09864.pdf

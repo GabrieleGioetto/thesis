@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.12)  24 OCT 2022 16:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.12)  4 NOV 2022 14:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -160,25 +160,25 @@ File: l3backend-pdftex.def 2022-08-30 L3 backend support: PDF output (pdfTeX)
 ) (thesis_gabriele_gioetto.aux)
 \openout1 = `thesis_gabriele_gioetto.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-Package hyperref Info: Link coloring OFF on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+Package hyperref Info: Link coloring OFF on input line 15.
  (thesis_gabriele_gioetto.out) (thesis_gabriele_gioetto.out)
 \@outlinefile=\write3
 \openout3 = `thesis_gabriele_gioetto.out'.
@@ -203,114 +203,138 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 17.
+(Font)              <12> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 17.
+(Font)              <8> on input line 18.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 17.
+(Font)              <6> on input line 18.
  [1
 
-{C:/Users/I573431/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-<./images//Taxonomy_Tickets.drawio.png, id=54, 1036.87375pt x 615.29875pt>
+{C:/Users/I573431/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (thesis_gabriele_gioetto.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 5.
+)
+\tf@toc=\write4
+\openout4 = `thesis_gabriele_gioetto.toc'.
+
+ [2] [3]
+<./images//Taxonomy_Tickets.drawio.png, id=74, 1036.87375pt x 615.29875pt>
 File: ./images//Taxonomy_Tickets.drawio.png Graphic file (type png)
 <use ./images//Taxonomy_Tickets.drawio.png>
-Package pdftex.def Info: ./images//Taxonomy_Tickets.drawio.png  used on input line 37.
+Package pdftex.def Info: ./images//Taxonomy_Tickets.drawio.png  used on input line 45.
 (pdftex.def)             Requested size: 345.0pt x 204.72978pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 37--38
+Overfull \hbox (15.0pt too wide) in paragraph at lines 45--46
 [][] 
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 58.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 58.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./images//Taxonomy_Tickets.drawio.png>] [3]
-Overfull \hbox (0.67587pt too wide) in paragraph at lines 81--83
+[4 <./images//Taxonomy_Tickets.drawio.png>]
+Overfull \hbox (0.67587pt too wide) in paragraph at lines 89--91
 []\OT1/cmr/m/n/10 In the \OT1/cmr/m/it/10 Na-tional Oc-cu-pa-tional Em-ploy-ment and Wage Es-ti-mates United States
  []
 
-
-Overfull \hbox (188.3002pt too wide) in paragraph at lines 102--109
+[5]
+Overfull \hbox (188.3002pt too wide) in paragraph at lines 110--117
 \OT1/cmr/m/n/10 each other fea-ture $\OML/cmm/m/it/10 x[]$\OT1/cmr/m/n/10 . As a prior we used a dirich-let dis-tri-bu-tion. [https://mbernste.github.io/files/notes/Psuedocounts.pdf]
  []
 
-[4]
-Overfull \hbox (9.55965pt too wide) in paragraph at lines 111--113
+[6]
+Overfull \hbox (9.55965pt too wide) in paragraph at lines 119--121
 \OT1/cmr/m/n/10 where $\OML/cmm/m/it/10 ^^O$ \OT1/cmr/m/n/10 is the pri-vacy bud-get for dif-fer-en-tial pri-vacy, which con-trols the anonymiza-
  []
 
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 122.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 130.
 (C:\Users\I573431\AppData\Local\Programs\MiKTeX\tex/latex/base\omscmr.fd
 File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 122.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 130.
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--127
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
 
  []
 
-[5]
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 139.
- (C:\Users\I573431\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
+
+Underfull \hbox (badness 10000) in paragraph at lines 132--135
+
+ []
+
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 147.
+(C:\Users\I573431\AppData\Local\Programs\MiKTeX\tex/latex/base\omlcmr.fd
 File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 139.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 147.
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--140
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 128--140
+Underfull \hbox (badness 10000) in paragraph at lines 136--148
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--140
+Underfull \hbox (badness 10000) in paragraph at lines 136--148
 
  []
 
-[6]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+Underfull \hbox (badness 10000) in paragraph at lines 136--148
 
-<./images//GPT-vs-GPT-J-uai-1440x933.jpg, id=88, 1445.4pt x 936.49875pt>
+ []
+
+[7] [8]
+<./images//no_ngram_thesis.drawio.png, id=109, 781.2387pt x 133.6995pt>
+File: ./images//no_ngram_thesis.drawio.png Graphic file (type png)
+<use ./images//no_ngram_thesis.drawio.png>
+Package pdftex.def Info: ./images//no_ngram_thesis.drawio.png  used on input line 187.
+(pdftex.def)             Requested size: 345.0pt x 59.04216pt.
+
+Overfull \hbox (25.00003pt too wide) in paragraph at lines 186--188
+[] 
+ []
+
+<./images//num_beams.drawio.png, id=110, 475.5366pt x 403.2666pt>
+File: ./images//num_beams.drawio.png Graphic file (type png)
+<use ./images//num_beams.drawio.png>
+Package pdftex.def Info: ./images//num_beams.drawio.png  used on input line 189.
+(pdftex.def)             Requested size: 172.5pt x 146.28346pt.
+<./images//do_sample.drawio.png, id=111, 626.34pt x 294.09875pt>
+File: ./images//do_sample.drawio.png Graphic file (type png)
+<use ./images//do_sample.drawio.png>
+Package pdftex.def Info: ./images//do_sample.drawio.png  used on input line 191.
+(pdftex.def)             Requested size: 345.0pt x 162.00162pt.
+
+Overfull \hbox (25.00003pt too wide) in paragraph at lines 190--192
+[] 
+ []
+
+[9 <./images//no_ngram_thesis.drawio.png> <./images//num_beams.drawio.png>]
+<./images//GPT-vs-GPT-J-uai-1440x933.jpg, id=120, 1445.4pt x 936.49875pt>
 File: ./images//GPT-vs-GPT-J-uai-1440x933.jpg Graphic file (type jpg)
 <use ./images//GPT-vs-GPT-J-uai-1440x933.jpg>
-Package pdftex.def Info: ./images//GPT-vs-GPT-J-uai-1440x933.jpg  used on input line 213.
+Package pdftex.def Info: ./images//GPT-vs-GPT-J-uai-1440x933.jpg  used on input line 230.
 (pdftex.def)             Requested size: 345.0pt x 223.52107pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 213--214
+Overfull \hbox (15.0pt too wide) in paragraph at lines 230--231
 [][] 
  []
 
-[7] [8 <./images//GPT-vs-GPT-J-uai-1440x933.jpg>] (thesis_gabriele_gioetto.aux)
+[10 <./images//do_sample.drawio.png>] [11 <./images//GPT-vs-GPT-J-uai-1440x933.jpg>] (thesis_gabriele_gioetto.aux)
 Package rerunfilecheck Info: File `thesis_gabriele_gioetto.out' has not changed.
 (rerunfilecheck)             Checksum: 96DB2782459109C4A0AEA388F85E2D3C;1133.
  ) 
 Here is how much of TeX's memory you used:
- 8275 strings out of 475389
- 134389 string characters out of 2776056
- 477887 words of memory out of 3000000
- 29534 multiletter control sequences out of 15000+600000
+ 8312 strings out of 475389
+ 135512 string characters out of 2776056
+ 473890 words of memory out of 3000000
+ 29561 multiletter control sequences out of 15000+600000
  474195 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,10n,77p,812b,495s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,10n,77p,812b,507s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\I573431\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis_gabriele_gioetto.pdf (8 pages, 331812 bytes).
+Output written on thesis_gabriele_gioetto.pdf (11 pages, 383501 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 190 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
