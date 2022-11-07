@@ -220,14 +220,35 @@ force words & [\space] \\ \hline
 
 The GPT architecture is based on the original Transformers paper, which introduced two types of transformers blocks: the encoder block and the decoder block. GPT is assembled by a stack of decoder blocks, which are composed by:
 \begin{itemize}
-    \item Normalization Layers
-    \item Masked Self-Attention Layer
+    \item Normalization Layers: a normalization layer \cite{ba2016layer}  normalize all inputs of a neural network across their features. It has been shown that Layer normalization enables smoother gradients, faster training, and better
+    generalization accuracy \cite{xu2019understanding}
+
+    $x$: data sample \\
+    $d$: dimension of data sample \\
+    $y$: output of LayerNorm \\
+    $\epsilon$: small number added for stability
+
+    \begin{equation}
+        u = \frac{1}{d}\sum_{i=1}^{d}x_i 
+    \end{equation}
+    \begin{equation}
+        \sigma^2 = \frac{1}{d}\sum_{i=1}^{d}(x_ - ui)^2
+    \end{equation}
+    \begin{equation}
+        \hat{x_i} = \frac{x_i - u}{\sqrt{\sigma^2 + \epsilon}}
+    \end{equation}
+    \begin{equation}
+        y = \gamma\hat{x_i} + \beta
+    \end{equation}
+
+    where $\gamma$ and $\beta$ are parameters that the model learns.
+    \item Masked Self-Attention Layer: 
     \item Feed Forward Neural Network Layer
 \end{itemize}
 
 
 
-\includegraphics[width=\textwidth]{GPT-vs-GPT-J-uai-1440x933.jpg}
+\includegraphics[width=\textwidth]{gptJ_vs_gpt_architecture.drawio.png}
 
 
 \section{Dataset analysis}
@@ -235,6 +256,8 @@ The GPT architecture is based on the original Transformers paper, which introduc
 
 \section{Experiments}
 
+\bibliography{biblio} 
+\bibliographystyle{ieeetr}
     
 
-\end{document} \\
+\end{document}

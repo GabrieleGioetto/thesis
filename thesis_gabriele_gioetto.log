@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.12)  4 NOV 2022 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.8.28) (preloaded format=pdflatex 2022.9.12)  7 NOV 2022 17:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -308,33 +308,33 @@ Overfull \hbox (25.00003pt too wide) in paragraph at lines 190--192
 [] 
  []
 
-[9 <./images//no_ngram_thesis.drawio.png> <./images//num_beams.drawio.png>]
-<./images//GPT-vs-GPT-J-uai-1440x933.jpg, id=120, 1445.4pt x 936.49875pt>
-File: ./images//GPT-vs-GPT-J-uai-1440x933.jpg Graphic file (type jpg)
-<use ./images//GPT-vs-GPT-J-uai-1440x933.jpg>
-Package pdftex.def Info: ./images//GPT-vs-GPT-J-uai-1440x933.jpg  used on input line 230.
-(pdftex.def)             Requested size: 345.0pt x 223.52107pt.
+[9 <./images//no_ngram_thesis.drawio.png> <./images//num_beams.drawio.png>] [10 <./images//do_sample.drawio.png>]
+<./images//gptJ_vs_gpt_architecture.drawio.png, id=130, 918.43124pt x 988.69376pt>
+File: ./images//gptJ_vs_gpt_architecture.drawio.png Graphic file (type png)
+<use ./images//gptJ_vs_gpt_architecture.drawio.png>
+Package pdftex.def Info: ./images//gptJ_vs_gpt_architecture.drawio.png  used on input line 251.
+(pdftex.def)             Requested size: 345.0pt x 371.39287pt.
 
-Overfull \hbox (15.0pt too wide) in paragraph at lines 230--231
+Overfull \hbox (15.0pt too wide) in paragraph at lines 251--252
 [][] 
  []
 
-[10 <./images//do_sample.drawio.png>] [11 <./images//GPT-vs-GPT-J-uai-1440x933.jpg>] (thesis_gabriele_gioetto.aux)
+[11] (thesis_gabriele_gioetto.bbl) [12 <./images//gptJ_vs_gpt_architecture.drawio.png>] (thesis_gabriele_gioetto.aux)
 Package rerunfilecheck Info: File `thesis_gabriele_gioetto.out' has not changed.
 (rerunfilecheck)             Checksum: 96DB2782459109C4A0AEA388F85E2D3C;1133.
  ) 
 Here is how much of TeX's memory you used:
- 8312 strings out of 475389
- 135512 string characters out of 2776056
- 473890 words of memory out of 3000000
- 29561 multiletter control sequences out of 15000+600000
+ 8326 strings out of 475389
+ 135885 string characters out of 2776056
+ 473964 words of memory out of 3000000
+ 29565 multiletter control sequences out of 15000+600000
  474195 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,10n,77p,812b,507s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\I573431\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on thesis_gabriele_gioetto.pdf (11 pages, 383501 bytes).
+ <C:\Users\I573431\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/I573431/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on thesis_gabriele_gioetto.pdf (12 pages, 322930 bytes).
 PDF statistics:
- 190 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 38 named destinations out of 1000 (max. 500000)
  106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
