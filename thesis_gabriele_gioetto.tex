@@ -194,9 +194,6 @@ The parameters used for the generation of the next token are:
     
 \end{itemize}
 The default values assigned to the parameters used are shown in \autoref{table:parametersGPTJTable}
-
-
-
 \begin{table}[h] 
 \centering
 \begin{tabular}{|l|l|}
@@ -242,19 +239,50 @@ The GPT architecture is based on the original Transformers paper, which introduc
     \end{equation}
 
     where $\gamma$ and $\beta$ are parameters that the model learns.
-    \item Masked Self-Attention Layer: 
-    \item Feed Forward Neural Network Layer
+    \item Masked Self-Attention Layer: attention is a mechanism that allows neural networks to assign a different amount of weight to each token in a sequence and process each token as a weighted average of all other tokens. \\
+    In practice three matrixes are calculated:
+    \begin{itemize}
+        \item $Q$ (Query): the representation of the current token
+        \item $K$ (Key): the representation of all the other tokens, which are matched with the current token
+        \item $V$ (Value): the representation of all the words, used for the weighted-average
+    \end{itemize}
+    The $Q$, $K$ and $V$ matrixes are initialized as:
+    \begin{itemize}
+        \item $Q$ = $W_qX + b_q$ 
+        \item $K$ = $W_kX + b_k$ 
+        \item $V$ = $W_vX + b_v$
+    \end{itemize}
+    where $X$ is the input matrix and the other matrixes are randomly initialized and learned by the model.
+    Finally, the attention score is calculated with
+    \begin{equation}
+        Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d}})V
+    \end{equation}
+    where $d$ is a normalization factor equivalent to the embeddings dimension \\
+    The masked self-attention is a modified version of self-attention where all the tokens that appear after the current one are set to $0$, in order not to let the model know any information regarding the tokens at the next positions. This is fundemantel when training generative models such as GPT, whose scope is to predict the successive tokens.
+    \item Feed Forward Neural Network Layer: Used to add non-linearity to the transformer block
+\end{itemize}
+Compared to GPT-3, GPT-J has two minor architectural differences\cite[]{gpt-j}:
+\begin{itemize}
+    \item Rotary Embedding
+    \item The attention layer and the feedforward layer in parallel for decreased communication
 \end{itemize}
 
+\subsection{Rotary Embedding}
+Rotary 
 
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{gptJ_vs_gpt_architecture.drawio.png}
+    \caption{GPT-3 and GPT-J architectures compared}
+    \label{GPT-architectures}
+\end{figure}    
 
-\includegraphics[width=\textwidth]{gptJ_vs_gpt_architecture.drawio.png}
 
 
 \section{Dataset analysis}
 
 
 \section{Experiments}
+
 
 \bibliography{biblio} 
 \bibliographystyle{ieeetr}
