@@ -21,3 +21,8 @@ Sinusoidal embeddings add a  or  term, while rotary embeddings use a multiplicat
 difference between gpt-3 and gpt-j architecture:
 * Rotary embedding for slightly better performance.
 * Placing the attention layer and the feedforward layer in parallel for decreased communication.
+
+TODO:
+- ADD Byte Pair Encoding GPT
+- add ECCO visualization 
+https://colab.research.google.com/github/jalammar/ecco/blob/main/notebooks/Ecco_Primary_Attributions.ipynb
