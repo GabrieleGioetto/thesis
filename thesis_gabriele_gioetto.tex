@@ -3,6 +3,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{changepage}
+\usepackage{amsmath}
 
 \graphicspath{ {./images/} }
 
@@ -37,7 +38,8 @@ To address the need for a large dataset of HR tickets, we created a taxonomy of 
 
 \section{Related Work}
 
-\section{Taxonomy}
+\section{Method}
+\subsection{Taxonomy}
 Usually HR tickets can belong to various categories, which can range from a request of shift change to a complaint about a superior. \\
 We built a taxonomy of tickets, which is structered in categories and sub categories. Each sub category has its own variables that are used as inputs for the ticket generation. For example to create a request of sick leave, we pass as inputs the reason and the number of days of sick leave requested. Moreover, each category has distinct templates and prompts. The taxonomy has been built following the advise of an HR expert from SAP, however the final taxonomy presented here is a subset of the original one due to the unavailability of public data on certain topics ( Ex. \textit{Work benefits})  \\
 The final complete taxonomy can be seen in the \autoref{table:categoriesTable}
@@ -68,7 +70,7 @@ The final complete taxonomy can be seen in the \autoref{table:categoriesTable}
 \end{table}
     
 
-\section{Datasets}
+\subsection{Datasets}
 In order to generate tickets, we decided to use real data as a starting point to make them as much realistic as possible. Another reason to use real data is that it makes the dataset useful for use cases such as anonymization. \\
 The dataset that we used are all public and available online. In some cases where no datasets were available, we created them manually from personal experience. \\
 The datasets are:
@@ -81,7 +83,7 @@ The datasets are:
     \item \textit{Geonames all cities with a population over 1000}: datasets of all cities of the world with a population over 1000 people. It is used for the requests of information about accommodation.
 \end{itemize}
 
-\subsection{Datasets preprocessing}
+\subsubsection{Datasets preprocessing}
 The \textit{Absenteeism at work Data Set} is the only dataset that contains data about people that is not already grouped and averaged. This means that there is a record in the dataset for each employee request, which contains the personal information of the employee, the reason of the absence and the time of absence in hours. For privacy reasons, we used a Bayesian Network. A Bayesian network is a probabilistic graphical model that measures the conditional dependence structure of a set of random variables based on the Bayes theorem. The features that we have used to build the Bayesian network are the \textit{reason for absence}, the \textit{month of absence} and the \textit{time of absence}.
 \\
 Using the \textit{Absenteeism at work Data Set} we learn conditional probability distributions from data, to which we add a Laplace noise for differential privacy. Then we can sample new data that follow the original distributions, but that are not equal to the original ones. The absence reasons in the dataset are given as ICD(International Classification of Diseases) codes, to make them more human readable, we picked for each ICD code the corresponding more frequent diseases.
@@ -125,7 +127,7 @@ where $\epsilon$ is the privacy budget for differential privacy, which controls 
 Once the private Bayesian network is built, we can sample new values for all the nodes in the graph. These generated values will have the same distribution and preserve the consistency and statistical properties of the original dataset up to the noise addition which acts as a de-identification barrier. 
 
     
-\section{Ticket Generation}
+\subsection{Ticket Generation}
 For each HR ticket, we create a fake employee. For all tickets' categories, the employee has some common features: \textit{name}, \textit{first name}, \textit{last name}, \textit{nationality}, \textit{country}, \textit{email}, \textit{company}, \textit{company's email} and \textit{ticket date}.\\
 All these information are created exploiting the Python library \textit{Faker}. The nationality and the company's country are selected from the extendible list \{ USA, Germany, Italy, Spain, France \}. All other information are created accordingly to the country picked. So for example if the country of birth of the employee is Italy, then the generated name will be Italian. \\
 
@@ -267,8 +269,45 @@ Compared to GPT-3, GPT-J has two minor architectural differences\cite[]{gpt-j}:
     \item The attention layer and the feedforward layer in parallel for decreased communication
 \end{itemize}
 
-\subsection{Rotary Embedding}
-Rotary 
+\subsubsection{Rotary Position Embedding}
+Position embeddings are used to infer the notion of position to the model, which does not have any sense of position for each token. In other words, using the attention mechanism each token "match" with the other tokens in the same manner, not considering where if the other token is located right after the current one or if it is at the end of the sentence. Position embeddings are used to add to the model this sense of position. \\ Rotary position embedding has been introduced by Su et al., it is a novel method that unifies absolute and relative approaches to position embeddings. \\
+The typical approach, that is also used by GPT-3, is to use a sinusoidal embedding, which is defined as
+\begin{equation}
+    \begin{cases}
+        p_{1,2t} = sin(k/10000^{2t/d}) \\
+        p_{1,2t+1} = cos(k/10000^{2t/d}) 
+    \end{cases}
+\end{equation}
+where $p_{1,2t}$ is the $2^{th}$ element of the d-dimensional vector $p_i$
+RoPE instead proposes to incorporate the relative position information by multiplyng the context representation with the sinusoidal functions instead if directly adding them. \\
+If we define 
+% TODO: add multiple lines
+\begin{equation}
+    q_m = f_q(x_m, m) \\
+    k_n = f_k(x_n, n) 
+\end{equation}
+
+where $f_q$ and $f_k$ are functions that incorporates the $m^{th}$ and $n^{th}$ positions respectively to the vector embeddings $x_m$ and $x_n$ to produce the query and key vectors, we can require the inner product of the query $q_m$ and $k_n$ to be formulated by a function $g$ that depends only on the word embeddings $x_m$, $x_n$ and their relative position $m - n$
+\begin{equation}
+    \langle f_q(x_m, m) \: , \: f_k(x_n, n) \rangle = g(x_m,x_n,m-n)
+\end{equation}
+In the simplest case $d=2$, $f_{\{q,k\}}$ are defined as
+\begin{equation}
+    f_{(\{q,k\}, \{m,n\})} = (W_{\{q,k\}}x_{\{m,n\}})e^{i\{m,n\}\theta}
+\end{equation}
+and therefore we obtain
+\begin{equation}
+    g(x_m, x_n, m - n) = Re[(W_qx_m)(W_kx_n)^Te^{i(m-n)\theta}]
+\end{equation}
+which preserves the relative positional information of the word embeddings. This equation is used when calculating the self-attention, which will become
+\begin{equation}
+    Attention(Q,K,V) = softmax(\frac{g(x_m, x_n, m - n)}{\sqrt{d}})V
+\end{equation}
+This equation can be generalized for $d > 2$, as shown in the original paper. \\
+In the end, incorporating the RoTE is pretty straightforward, you just have to rotate the word embedding by a multiple of its position index. \\
+According to the researchers that published GPT-J\cite{rope-eleutherai}, using RoTE leads to a faster convergence of training and validation losses and a lower overall validation loss.
+
+% TODO: Add photos of rotary embeddings 
 
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{gptJ_vs_gpt_architecture.drawio.png}
@@ -277,11 +316,15 @@ Rotary
 \end{figure}    
 
 
-
-\section{Dataset analysis}
-
-
-\section{Experiments}
+\subsection{Survey}
+\subsection{Results}
+\subsection{Additional Experiments}
+\section{Use Cases}
+\subsection{Classification}
+\subsection{NER}
+\subsection{Anonymization}
+\subsection{Summarization}
+\section{Conclusion}
 
 
 \bibliography{biblio} 

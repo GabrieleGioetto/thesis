@@ -1,23 +1,27 @@
+Index:
 - List of Figures
 - List of Tables
-- ACK
+- Acknowledgements
 
-- Introduction
-- Related works
+- Abstract
+- Introduction ( reason to build this dataset, ... )
+- Related works ( similar dataset not existing, show other dataset used in NLP maybe )
 - Method
-    - Taxonomy
-    - Datasets
-    - Templates
-    - Models
-    - Ticket generation
-    - Survey ( Test data )
-    - Results ( Metrics )
-    - Additional Experiments
-        - Paraphraser models
+    - Taxonomy ( categories/sub-categories, variables, why they were chosen… )
+    - Datasets ( where original data are taken )
+    - Templates ( prompts used, philosophy behind templates… )
+    - Models ( GPT models ( GPT-2, GPT-J,...), theoretical explanation )
+    - Ticket generation ( Example of generated tickets, ... )
+    - Survey ( Test data, why it is needed, the method of gathering the data, ... )
+    - Results ( Metrics on data generated, ...  )
+    - Additional Experiments conducted ( Things I tried, but not looked in details or that did not work well )
+        - Paraphraser models  ( maybe this one not )
         - Topic modeling generation
-        - Finetune
-- Use cases
-    - Classification
-    - Anonymization
-    - Summarization
+        - Finetune GPT model on Enron
+- Use cases ( for each use case show how the dataset was used, which models were
+  	      used for the training, hyperparameters, results... )
+    - Classification ( BERT and fastText )
+    - NER
+    - Anonymization ( T5 approach )
+    - Summarization 
 - Conclusion
