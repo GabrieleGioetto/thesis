@@ -1,0 +1,49 @@
+\newgeometry{top=2cm,left=3cm,right=3cm,bottom=2cm,heightrounded}
+\begin{titlepage}
+\centering
+%
+{\institutionfont \textbf{\MakeUppercase{\thesisuniversity}} \par}
+%
+\vspace{\stretch{2}} % changing this number and the others changes the proportion
+%
+{\divisionfont \textbf{\thesislevel's Degree in \thesiscourse} \par}
+%
+\vspace{\stretch{3}}
+%
+\includegraphics[width=70mm]{\thesisuniversitylogo}\\
+%
+\vspace{\stretch{4}}
+%
+{\divisionfont \textbf{\thesislevel's Degree Thesis} \par}
+%
+\vspace{\stretch{3}}
+%
+{\customtitlefont \textbf{\thesistitle} \par}
+%
+\vspace{\stretch{10}}
+%
+\makebox[\textwidth]{\null\hfill\def\arraystretch{2}% % to change the spacing change this number
+\begin{minipage}[t]{.5\textwidth}\raggedright
+    \begin{tabular}[t]{@{}l@{}}
+        \fixednamesfont \textbf{\thesissupervisortext} \\
+        \namesfont \xmakefirstuc{\thesissupervisoronetitle}~\thesissupervisoronename~\thesissupervisoronesurname\\
+        \namesfont \xmakefirstuc{\thesissupervisortwotitle}~\thesissupervisortwoname~\thesissupervisortwosurname\\
+    \end{tabular}
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{.5\textwidth}\raggedleft
+    \begin{tabular}[t]{@{}r@{}}
+        \fixednamesfont \textbf{\thesiscandidatetext} \\
+        \namesfont \thesiscandidatename~\thesiscandidatesurname
+    \end{tabular}
+\end{minipage}\hfill\null}\\
+%
+\vspace{\stretch{5}}
+%
+{\footfont \textbf{\thesisdate} \par}
+%
+\end{titlepage}
+
+\restoregeometry

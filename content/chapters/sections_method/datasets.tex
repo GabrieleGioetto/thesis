@@ -1,0 +1,28 @@
+\section{Datasets}
+In order to generate tickets, we decided to use real data as a starting point to make them as much realistic as possible. Another reason to use real data is that it makes the dataset useful for use cases such as anonymization. \\
+The dataset that we used are all public and available online. In some cases where no datasets were available, we created them manually from personal experience. \\
+The datasets are:
+\begin{itemize}
+    \item \textit{Absenteeism at work Data Set}: contains records of work absences, with the reason of the absence (almost always a disease) and the number of hours of absence. It is used to create the requests of days off for health reasons
+    \item \textit{National Occupational Employment and Wage Estimates United States}: estimates of wages in the US calculated with data collected from employers in all industry sectors in metropolitan and nonmetropolitan areas in every state and the District of Columbia. It is used to create the requests of salary raise.
+    \item \textit{List of events of life}: list of major events in life. It is used to create the requests of time off due to personal reasons. 
+    \item \textit{Gender pay gap in the UK}: dataset of employers with 250 or more employees, comparing men and women’s average pay across the organizations. It is used to create the requests of explanation for the wage gap amongst genders.
+    \item \textit{OpenFlights database}: datasets of airports and flights all over the world. It is used for the requests of refund of travels.
+    \item \textit{Geonames all cities with a population over 1000}: datasets of all cities of the world with a population over 1000 people. It is used for the requests of information about accommodation.
+\end{itemize}
+
+\subsubsection{Datasets preprocessing}
+The \textit{Absenteeism at work Data Set} is the only dataset that contains data about people that is not already grouped and averaged. This means that there is a record in the dataset for each employee request, which contains the personal information of the employee, the reason of the absence and the time of absence in hours. For privacy reasons, we used a Bayesian Network. A Bayesian network is a probabilistic graphical model that measures the conditional dependence structure of a set of random variables based on the Bayes theorem. The features that we have used to build the Bayesian network are the \textit{reason for absence}, the \textit{month of absence} and the \textit{time of absence}.
+\\
+Using the \textit{Absenteeism at work Data Set} we learn conditional probability distributions from data, to which we add a Laplace noise for differential privacy. Then we can sample new data that follow the original distributions, but that are not equal to the original ones. The absence reasons in the dataset are given as ICD(International Classification of Diseases) codes, to make them more human readable, we picked for each ICD code the corresponding more frequent diseases.
+
+In the \textit{National Occupational Employment and Wage Estimates United States} dataset, we sample employees based on the number of people employed in a certain field. Therefore for example since `Retail Sales Workers` consists of the 5.4\% of the total occupations, then the sampled employee will have the 5.4\% of possibility to have as occupation `Retail Sales Worker`.
+The current salary of the employee is calculated adding a Gaussian noise to the average salary of the employee's occupation, and then the salary raise requested is picked randomly between 5\%-10\%.
+
+The ranges of wage gap, used in the tickets regarding explanation for the gender wage gap in the company, are sampled randomly from the dataset \textit{Gender pay gap in the UK}, adding a Gaussian noise for privacy reasons.
+
+To sample the cities for the requests of accomodation, we randomly sample from all the cities with more than 100,000 inhabitants from the country of residence of the synthetic employee. To calculate the duration of the accommodation we pick a random number of months between 1 and 12.
+
+To get data for the category type `refund travel`, we sample randomly one flight from all the flights leaving from the country of the synthetic employee. The data are taken from the \textit{OpenFlights database}.
+
+The complaints about coworkers and superiors and the life events that can affect the work life of a person were handcrafted.
