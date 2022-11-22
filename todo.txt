@@ -26,3 +26,4 @@ TODO:
 - ADD Byte Pair Encoding GPT
 - add ECCO visualization 
 https://colab.research.google.com/github/jalammar/ecco/blob/main/notebooks/Ecco_Primary_Attributions.ipynb
+- Add most frequent words by category ( maybe wordcloud )

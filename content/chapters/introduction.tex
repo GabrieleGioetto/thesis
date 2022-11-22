@@ -16,6 +16,9 @@ The special categories of personal data cannot be generally processed, with some
 
 \section{Synthetic data}
 Synthetic data is artificial data that is generated from real data and has the same statistical distribution of the original data. This means that synthetic data and original data should deliver very similar results when undergoing the same statistical analysis. \\
-Synthetic data has many benefits over real data: if you create a model that generates synthetic data you can generate how many data you need, you can infer certain properties to your data ( for example it can be useful for bias and fairness research ) and above all synthetic data can respect the right to personal data protection. It is not always guaranteed that synthetic data is privacy preserving, it has been shown that synthetic data can leak personal information \cite{bellovin2019privacy}.\\
+Synthetic data has many benefits over real data: if you create a model that generates synthetic data you can generate how many data you need, you can infer certain properties to your data ( for example it can be useful for bias and fairness research ) and above all, synthetic data can respect the right to personal data protection. However, it is not always guaranteed that synthetic data is privacy preserving: it has been shown that synthetic data can leak personal information \cite{bellovin2019privacy}.\\
 
 \section{Ticket Generation}
+We created a tool that can be used to create unlimited amount of HR tickets and we created a dataset of already generated tickets. Each ticket has a category, sub-category and the entities of the ticket. The tickets are not created from scratch, but starting from a dataset of real data and some prompts that help the model generate the text. \\
+The general schema is
+The general schema is summed up in the 
