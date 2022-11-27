@@ -19,6 +19,12 @@ Synthetic data is artificial data that is generated from real data and has the s
 Synthetic data has many benefits over real data: if you create a model that generates synthetic data you can generate how many data you need, you can infer certain properties to your data ( for example it can be useful for bias and fairness research ) and above all, synthetic data can respect the right to personal data protection. However, it is not always guaranteed that synthetic data is privacy preserving: it has been shown that synthetic data can leak personal information \cite{bellovin2019privacy}.\\
 
 \section{Ticket Generation}
-We created a tool that can be used to create unlimited amount of HR tickets and we created a dataset of already generated tickets. Each ticket has a category, sub-category and the entities of the ticket. The tickets are not created from scratch, but starting from a dataset of real data and some prompts that help the model generate the text. \\
-The general schema is
-The general schema is summed up in the 
+We created a tool that can be used to create unlimited amount of synthetic HR tickets and we published a dataset of 16000 tickets. Each ticket has a category, sub-category and the entities of the ticket. The tickets are not created from scratch, but starting from a dataset of real data and some prompts that help the model generate the text. \\
+We did a survey internal to the company to gather some real data, and we changed the tickets generation parameters in order to respect the real data with respect to different text metrics. \\
+Finally, we showed different possible use cases for the dataset:
+\begin{itemize}
+    \item Ticket Anonymization
+    \item Ticket Classification
+    \item Named Entity Recognition on tickets' entities
+    \item Ticket Summarization
+\end{itemize}

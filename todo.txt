@@ -6,8 +6,6 @@ https://jalammar.github.io/illustrated-gpt2/
 
 https://dugas.ch/artificial_curiosity/GPT_architecture.html
 
-https://arxiv.org/pdf/2104.09864.pdf
-
 positional encoding: https://kazemnejad.com/blog/transformer_architecture_positional_encoding/
 
 rotary embedding: https://blog.eleuther.ai/rotary-embeddings/
@@ -26,4 +24,14 @@ TODO:
 - ADD Byte Pair Encoding GPT
 - add ECCO visualization 
 https://colab.research.google.com/github/jalammar/ecco/blob/main/notebooks/Ecco_Primary_Attributions.ipynb
+https://jalammar.github.io/explaining-transformers/
+make distinction between FNN part and activation part, maybe add two distinct plots
+Images take from notebook saved on 
 - Add most frequent words by category ( maybe wordcloud )
+- Add ethical consideration part
+- run topic modeling on created tickets and plot them instead of wordcloud maybe
+- add image of bayesian network
+
+Bayesian
+[https://mbernste.github.io/files/notes/Psuedocounts.pdf]
+https://cs.nyu.edu/~roweis/csc412-2004/notes/lec13x.pdf

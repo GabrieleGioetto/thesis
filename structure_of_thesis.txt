@@ -13,7 +13,7 @@ Index:
     - Models ( GPT models ( GPT-2, GPT-J,...), theoretical explanation )
     - Ticket generation ( Example of generated tickets, ... )
     - Survey ( Test data, why it is needed, the method of gathering the data, ... )
-    - Results ( Metrics on data generated, ...  )
+    - Results ( Metrics on data generated, visualization...  )
     - Additional Experiments conducted ( Things I tried, but not looked in details or that did not work well )
         - Paraphraser models  ( maybe this one not )
         - Topic modeling generation
