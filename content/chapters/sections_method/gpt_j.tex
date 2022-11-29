@@ -71,7 +71,7 @@ force words & [\space] \\ \hline
 
 The GPT architecture is based on the original Transformers paper, which introduced two types of transformers blocks: the encoder block and the decoder block. GPT is assembled by a stack of decoder blocks, which are composed by:
 \begin{itemize}
-    \item Normalization Layers: a normalization layer \cite{ba2016layer}  normalize all inputs of a neural network across their features. It has been shown that Layer normalization enables smoother gradients, faster training, and better generalization accuracy \cite{xu2019understanding}
+    \item Normalization Layers: a normalization layer \cite{ba2016layer} normalize all inputs of a neural network across their features. It has been shown that Layer normalization enables smoother gradients, faster training, and better generalization accuracy \cite{xu2019understanding}
 
     $x$: data sample \\
     $d$: dimension of data sample \\
@@ -111,7 +111,7 @@ The GPT architecture is based on the original Transformers paper, which introduc
         Attention(Q,K,V) = softmax \left(\frac{QK^T}{\sqrt{d}}\right)V
     \end{equation*}
     where $d$ is a normalization factor equivalent to the embeddings dimension \\
-    The masked self-attention is a modified version of self-attention where all the tokens that appear after the current one are set to $0$, in order not to let the model know any information regarding the tokens at the next positions. This is fundemantel when training generative models such as GPT, whose scope is to predict the successive tokens.
+    The masked self-attention is a modified version of self-attention where all the tokens that appear after the current one are set to $0$, in order not to let the model being influenced by any information regarding the tokens at the next positions. This is fundemental when training generative models such as GPT, whose scope is to predict the successive tokens.
     \begin{equation*}
         Attention(Q,K,V) = softmax\left(\frac{QK^T + Mask}{\sqrt{d}}\right)V
     \end{equation*}
@@ -133,8 +133,6 @@ The GPT architecture is based on the original Transformers paper, which introduc
     \caption{Byte-Pair Encoding Tokenization Example}
     \label{fig:Byte_Pair_Encoding}
 \end{figure}    
-
-
 
 
 GPT models use a Byte-Pair Encoding tokenization. The Byte-Pair Encoding algorithm starts by building a vocabulary with all the single characters of the corpus we are training on. Then, at each step of the algorithm, the two tokens which appear consecutevily the most in the words of the corpus are unified and create a new token. This process continue until the desired vocabulary lenght is satisfied. An example taken from the site \cite{byte-pair-encoding} is shown in the \autoref{fig:Byte_Pair_Encoding}

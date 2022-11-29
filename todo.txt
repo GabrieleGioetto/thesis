@@ -21,8 +21,8 @@ difference between gpt-3 and gpt-j architecture:
 * Placing the attention layer and the feedforward layer in parallel for decreased communication.
 
 TODO:
-- ADD Byte Pair Encoding GPT
-- add ECCO visualization 
+- ADD Byte Pair Encoding GPT V
+- add ECCO visualization V
 https://colab.research.google.com/github/jalammar/ecco/blob/main/notebooks/Ecco_Primary_Attributions.ipynb
 https://jalammar.github.io/explaining-transformers/
 make distinction between FNN part and activation part, maybe add two distinct plots
@@ -30,7 +30,9 @@ Images take from notebook saved on
 - Add most frequent words by category ( maybe wordcloud )
 - Add ethical consideration part
 - run topic modeling on created tickets and plot them instead of wordcloud maybe
+    - https://github.com/MaartenGr/BERTopic#visualize-topics
 - add image of bayesian network
+- add in appendix all prompts additional info
 
 Bayesian
 [https://mbernste.github.io/files/notes/Psuedocounts.pdf]
