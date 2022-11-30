@@ -3,13 +3,13 @@ Index:
 - List of Tables
 - Acknowledgements
 
-- Abstract
+- Abstract 
 - Introduction ( reason to build this dataset, ... )
 - Related works ( similar dataset not existing, show other dataset used in NLP maybe )
 - Method
     - Taxonomy ( categories/sub-categories, variables, why they were chosen… )
     - Datasets ( where original data are taken )
-    - Templates ( prompts used, philosophy behind templates… )
+    - State of the art generative models
     - Models ( GPT models ( GPT-2, GPT-J,...), theoretical explanation )
     - Ticket generation ( Example of generated tickets, ... )
     - Survey ( Test data, why it is needed, the method of gathering the data, ... )

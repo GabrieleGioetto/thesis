@@ -20,6 +20,21 @@ difference between gpt-3 and gpt-j architecture:
 * Rotary embedding for slightly better performance.
 * Placing the attention layer and the feedforward layer in parallel for decreased communication.
 
+
+GPT state of the art models:
+- gpt-2
+- gpt-3
+- BLOOM
+- GPT-Neo
+- GPT-J
+- Chinchilla by DeepMind
+- ctrl by Salesforces
+- Google PALM
+- Jurassic-1 (https://uploads-ssl.webflow.com/60fd4503684b466578c0d307/61138924626a6981ee09caf6_jurassic_tech_paper.pdf)
+
+https://www.ankursnewsletter.com/p/openais-gpt-3-vs-open-source-alternatives
+
+
 TODO:
 - ADD Byte Pair Encoding GPT V
 - add ECCO visualization V
@@ -33,6 +48,9 @@ Images take from notebook saved on
     - https://github.com/MaartenGr/BERTopic#visualize-topics
 - add image of bayesian network
 - add in appendix all prompts additional info
+- add state of the art generative models 
+    - maybe add 
+- Calculate self-bleu 
 
 Bayesian
 [https://mbernste.github.io/files/notes/Psuedocounts.pdf]
