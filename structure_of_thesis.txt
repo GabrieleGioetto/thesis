@@ -18,6 +18,7 @@ Index:
         - Paraphraser models  ( maybe this one not )
         - Topic modeling generation
         - Finetune GPT model on Enron
+        - dp-VAE 
 - Use cases ( for each use case show how the dataset was used, which models were
   	      used for the training, hyperparameters, results... )
     - Classification ( BERT and fastText )
