@@ -1,0 +1,30 @@
+\section{Classification}
+
+% TODO: insert explanation of classification and labels and training data
+% Explain use of fastText for CPU friendly
+
+\subsection{FastText Classifier}
+FastText is a library developed by Facebook AI Research that provides a set of training algorithms for supervised learning of word embeddings from raw text and also can be used to build and train supervised text classification models. \\
+FastText creates word embeddings using a combination of character n-grams and word n-grams. To do this, FastText first breaks each word in the training text into its constituent character n-grams. For example, the word "cat" might be broken into the character n-grams "c", "ca", "cat", "a", "at", and "t". These character n-grams are then used to generate vectors. The words embeddings are calculated as the sum of their n-gram vectors. \\
+To learn the embeddings of these n-grams, FastText uses a skip-gram model, which is a type of model that maximizes the the probability of observing a word given its context, or in other words its surrounding words. By using this approach, FastText is able to learn high-quality word embeddings that capture the syntactic and semantic information of words. \\
+The fastText classification uses the fastText embeddings as input to the model, and in particular:
+\begin{algorithm}
+    \caption*{fastText Classification}
+    \begin{algorithmic}[1]
+      \State Words representation are averaged into a text representation
+      \State The text representation is fed to a linear classifier
+      \State The output of the linear classifier is given as input to a softmax function to compute the probability distribution over a set of predefined classes
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{BERT classifier}
+BERT (Bidirectional Encoder Representation from Transformers) is a model developed by Google AI based on the transformers architecture. BERT was trained on a large corpus on two different tasks: Masked Language Modeling and Next Sentence Prediction. \\
+Through the use of MLM, in the training phase 15\% of the tokens in a sentence are obscured and BERT can then be utilized to utilize the surrounding words in both directions to predict the masked tokens, facilitating bidirectional learning from the text. \\
+On the other hand, NSP helps the model understanding the relationships between sentences. Specifically, in the training phase 50\% of the examples are actually successive sentences, while in the other 50\% of the cases this condition is not respected. \\
+BERT is quite straight-forward to fine-tune, we just need to plugin the necessary layers at the top of the BERT architecture and fine-tune for a sufficient number of epochs the model end-to-end. \\
+The first token of a BERT embedding is the [CLS] token, that is a special token that acts as an aggregate representation of the sentence. The final embedding of the [CLS] token is used as input for the classification task. The most simple method, which is also the method used by the BERTForSequenceClassification class by HuggingFace, is to take the embedding of the [CLS] token at the last hidden layer and fed it to a single layer of a feed forward network. The layer of the feed forward network will have n input, where n is the dimension of the embedding of a token, and m output, where m is the desired number of outputs. \\
+% TODO: maybe put an image of the BERT architecture with the dropout and final classifier
+ 
+
+
+

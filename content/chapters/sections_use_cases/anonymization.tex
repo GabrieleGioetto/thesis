@@ -1,0 +1,26 @@
+\section{Anonymization}
+
+Anonymization of personal data refers to the process of removing personally identifiable information (PII) from data sets so that the individuals represented in the data cannot be identified. This is accomplished by either completely removing or replacing identifiable data with generic values. The purpose of anonymization is to protect the privacy of individuals while still allowing the data to be used for legitimate purposes. \\
+Most of the recent implementations of anonymization works by masking the personal information of a person, such as names and surnames, telephone numbers, addresses, credic card numbers and so on. \\
+One of the most famous library for anonymization is Presidio, developed by Microsoft. Presidio exploits pattern recognition with regex and Named Entity Recognition to find all the personal information of mask them. \\
+The main disadvantage of such techniques is that often the personal subject can be identified through the so-called quasi-identifiers, that more often than not are not masked.
+\\Here reported some examples that are not masked by Presidio:\\ \\
+Original sentence
+\begin{adjustwidth}{1cm}{}
+    The new intern at my office, the one with red hair, caught covid last week 
+\end{adjustwidth}
+Sentence redacted by Presidio
+\begin{adjustwidth}{1cm}{}
+    The new intern at my office, the one with red hair, caught covid \textless DATE\_TIME \textgreater
+\end{adjustwidth}
+Original sentence
+\begin{adjustwidth}{1cm}{}
+    The boss of the HR department of has made some weird comments about how I dress
+\end{adjustwidth}
+Sentence redacted by Presidio
+\begin{adjustwidth}{1cm}{}
+    The boss of the HR department of has made some weird comments about how I dress 
+\end{adjustwidth}
+
+Our new approach exploits a Seq
+

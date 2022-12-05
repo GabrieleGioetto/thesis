@@ -4,4 +4,58 @@ In this section we are going to describe various methods we have tried for the g
 Some of these reasons are lack of computational power, not good enough results and lack of time. \\
 
 \subsection{Topical Generation}
-Zandie et al. have presented 
+Zandie et al.\cite{zandie2021topical} have presented topical language generation, which consists of generating text conditioned on a specific chosen topic. The topic can be chosen by the users from a predetermined list of topics. The topics are represented as a distribution over a vocabulary, and they are extracted from a corpus using algorithm of Topic Modeling. \\
+The algorithm used is Latent Semantic Analysis, which gives us scores of each token per topic. LSA is able to discover latent topics in a document-term matrix by utilizing Singular Value Decomposition (SVD) to decompose the matrix. \\
+The topics are inferred to the text generation by adding the embedding of the topic to the logits of the model before the last softmax layer, where the parameter $\gamma$ control the topic inference ( the higher the parameter $\gamma$ is, the more the text generated will be about the topic chosen)
+\begin{equation*}
+    \begin{split}
+        & P(t_j|\;x_i): \text{probability of topic j given word k} \\
+        & S(x_i|\;x_{<i}): \text{logits of token i} \\
+    \end{split}    
+\end{equation*}
+
+They used a threshold to increase the probability of only the tokens that already have a minimum probability to be sampled.
+\begin{equation*}
+        logprob(i) = 
+        \begin{cases}
+            logP(t_j|\;x_i),& \text{if } S(x_i|\;x<i)\geq \text{threshold}\\
+            0,              & \text{otherwise}
+        \end{cases}
+\end{equation*}
+
+The final equation is:
+\begin{equation*}
+    P(x_i|\;x{<i},t_j) = softmax(S(x_i|\;x_{<i}) + \gamma\;logprob(i))
+\end{equation*}
+\\
+We experimented this method to generate the tickets' texts. The topic-word matrix was calculated starting from 20 Newsgroup, a dataset of 18000 news posts on 20 topics. \\
+
+% TODO: add examples of topical generation
+Topic used: football
+\begin{adjustwidth}{1cm}{}
+    [\dots] \\
+    Ticket category: Life event\\
+    Ticket sub-category: Health issues\\
+    Date start absence: 24/08/2016\\
+    Reason absence: a physiotherapy visit\\
+    Subject: Request for sick leave for 1 day\\\\
+    Dear Sir/Madame, my name is Adriana Giulietti. I am requesting football medical treatment on the following dates : - 28 nfl season 2016 (from 30th of August regular football game) professional training session in Milan from 29 football football league match between FC Portcullis football conference matches and other 
+\end{adjustwidth}
+
+Topic used: president, government
+\begin{adjustwidth}{1cm}{}
+    [\dots] \\
+    Ticket category: Life event\\
+    Ticket sub-category: Health issues\\
+    Date start absence: 25/12/2012\\
+    Reason absence: Hordeolum\\
+    Subject: Request for sick leave for 2 days\\\\
+    Dear Sir/Madame, my name is Cristian Manso. I am requesting sick pay or vacation from you because state government has decided to cancel the contract which was signed on 20 th of 
+    December 2012 with head office called president and deputy leader states house republic functions as a general administration department in charge common services like public works system
+    \end{adjustwidth}
+
+    
+
+The possible future implementations of the ticket generation could be completely with an unique prompt, letting the user choose the topic from a set of pre-trained topics. This would be more flexible than the current method, since to add new categories it would be sufficient to add a new row to the topic-word matrix. \\
+However, current results were not satisfying: the created tickets were not fluent and we did not find a corpus to create a topic-word matrix of topics related to the HR ticketing environment.
+
