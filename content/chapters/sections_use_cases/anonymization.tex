@@ -21,6 +21,29 @@ Sentence redacted by Presidio
 \begin{adjustwidth}{1cm}{}
     The boss of the HR department of has made some weird comments about how I dress 
 \end{adjustwidth}
+Our new approach exploits a Sequence to Sequence model called T5
+T5 is a model released by Google in 2019, it is a standard encoder-decoder transformer which, unlike BERT, always returns strings as outputs. This is why it is called a sequence to sequence model. \\
+T5 is a unified model that can be applied for many downstream tasks, such as sentiment analysis, sentence completation, question answering\dots\\
+In T5 architecture there are \textit{adapted layers} after each feed forward layer, whose scope is to diminish the number of parameters updates for each fine-tuned model. In fact, \textit{adapted layers} are dense-ReLU-dense blocks that are designed so that their input dimensionality and output dimensionality are equal. This let us to insert them into the Transformer architecture without other changes. When fine-tuning for each different task, only the \textit{adapted layers} and the normalization layers will be updated. This results in a considerable reduction of parameters updates.\\
+We followed a few-shot learning approach with T5. Rather than relying on a large amount of training data to allow a pre-trained model to adjust to a given task accurately, few-shot learning employs the use of a few examples to direct the training of a machine learning model with very minimal data. \\
+For each category of tickets, we wrote 10 examples of "anonymized" tickets , where we removed all personal information and information that could retrace to the original writer, maintaning only information that could be useful for analysis purposes.
+Here a couple of examples:\\ \\
+Original sentence:
+\begin{adjustwidth}{1cm}{}
+    Dear Sir/Madame, I cannot stand anymore this discrimination and prejudice against French people at work
+\end{adjustwidth}
+Anonymization used for few-shot learning:
+\begin{adjustwidth}{1cm}{}
+    The employee is filling a complaint for discrimination based on nationality 
+\end{adjustwidth}
+Original sentence:
+\begin{adjustwidth}{1cm}{}
+    Hello, my name is Zacaredas Pinilla and I work at Laguna-Franco Spain. I am having trouble finding an accommodation in the Algeciras area so if you could help me with this matter it would be greatly appreciated
+\end{adjustwidth}
+Anonymization used for few-shot learning:
+\begin{adjustwidth}{1cm}{}
+    The employee is asking for help finding an accommodation
+\end{adjustwidth}
 
-Our new approach exploits a Seq
+
 
