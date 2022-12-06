@@ -44,6 +44,42 @@ Anonymization used for few-shot learning:
 \begin{adjustwidth}{1cm}{}
     The employee is asking for help finding an accommodation
 \end{adjustwidth}
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/ticket_anonymization_schema.png}
+    \caption{Schema of Ticket Anonymization}
+    \label{fig:schema_ticket_anonymization}
+\end{figure}    
+To evaluate the goodness of an anonymization and how much of the information has remained after the anonymization we have used three different methods:
+\begin{itemize}
+    \item \textbf{QAGS}: Questions Answering and Generation for summarization
+    \item \textbf{SUMMAQA}: Unsupervised metric for reinforced summarization model 
+    \item \textbf{Cosine Similarity}
+\end{itemize}  
+These models were originally created to evaluate the goodness of a summarizatoin, we have adapted them to be used for evaluating our anonymization. \\
+The first two methods follow the same philosophy: they generate questions to ask both the original version and the anonymized version of the tickets, looking if the answers are coherent. We call them Questions and Answers models.
+
+\subsection*{QAGS}
+\subsection*{SUMMAQA}
+\subsection*{Cosine Similarity}
+
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/qa_models_qags.png}
+    \caption{Schema of QAGS}
+    \label{fig:schema_qags}
+\end{figure}    
+
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/qa_models_summaqa.png}
+    \caption{Schema of SUMMAQA}
+    \label{fig:schema_summa_qa}
+\end{figure}    
+
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/cosine_similarity.png}
+    \caption{Schema of Cosine Similarity for }
+    \label{fig:schema_cosine_similarity}
+\end{figure}    
+
 
 
 
