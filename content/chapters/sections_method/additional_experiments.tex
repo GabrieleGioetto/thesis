@@ -1,11 +1,11 @@
 \section{Additional Experiments}
 
-In this section we are going to describe various methods we have tried for the generation of tickets, but that have not been included in the final version of the ticket generation for different reasons. \\
+In this section, we are going to describe various methods we have tried for the generation of tickets which have not been included in the final version of the ticket generation for different reasons. \\
 Some of these reasons are lack of computational power, not good enough results and lack of time. \\
 
 \subsection{Topical Generation}
-Zandie et al.\cite{zandie2021topical} have presented topical language generation, which consists of generating text conditioned on a specific chosen topic. The topic can be chosen by the users from a predetermined list of topics. The topics are represented as a distribution over a vocabulary, and they are extracted from a corpus using algorithm of Topic Modeling. \\
-The algorithm used is Latent Semantic Analysis, which gives us scores of each token per topic. LSA is able to discover latent topics in a document-term matrix by utilizing Singular Value Decomposition (SVD) to decompose the matrix. \\
+Zandie et al.\cite{zandie2021topical} have presented topical language generation, which consists of generating text conditioned on a specific chosen topic. The topic can be chosen by the users from a predetermined list of topics. The topics are represented as a distribution over a vocabulary, and they are extracted from a corpus using algorithms of Topic Modeling. \\
+The algorithm used is Latent Semantic Analysis, which gives us scores for each token per topic. LSA is able to discover latent topics in a document-term matrix by utilizing Singular Value Decomposition (SVD) to decompose the matrix. \\
 The topics are inferred to the text generation by adding the embedding of the topic to the logits of the model before the last softmax layer, where the parameter $\gamma$ control the topic inference ( the higher the parameter $\gamma$ is, the more the text generated will be about the topic chosen)
 \begin{equation*}
     \begin{split}
@@ -28,7 +28,7 @@ The final equation is:
     P(x_i|\;x{<i},t_j) = softmax(S(x_i|\;x_{<i}) + \gamma\;logprob(i))
 \end{equation*}
 \\
-We experimented this method to generate the tickets' texts. The topic-word matrix was calculated starting from 20 Newsgroup, a dataset of 18000 news posts on 20 topics. \\
+We experimented this method to generate the tickets' texts. The topic-word matrix was calculated starting from 20 Newsgroups, a dataset of 18000 news posts on 20 topics. \\
 
 % TODO: add examples of topical generation
 Topic used: football
@@ -56,6 +56,6 @@ Topic used: president, government
 
     
 
-The possible future implementations of the ticket generation could be completely with an unique prompt, letting the user choose the topic from a set of pre-trained topics. This would be more flexible than the current method, since to add new categories it would be sufficient to add a new row to the topic-word matrix. \\
-However, current results were not satisfying: the created tickets were not fluent and we did not find a corpus to create a topic-word matrix of topics related to the HR ticketing environment.
+The possible future implementations of the ticket generation could be completely executed with a unique prompt, letting the user choose the topic from a set of pre-trained topics. This would be more flexible than the current method since to add new categories it would be sufficient to add a new row to the topic-word matrix. \\
+However, the current results were not satisfying: the created tickets were not fluent and we did not find a corpus to create a topic-word matrix of topics related to the HR ticketing environment.
 

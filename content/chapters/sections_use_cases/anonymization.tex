@@ -1,8 +1,8 @@
 \section{Anonymization}
 
 Anonymization of personal data refers to the process of removing personally identifiable information (PII) from data sets so that the individuals represented in the data cannot be identified. This is accomplished by either completely removing or replacing identifiable data with generic values. The purpose of anonymization is to protect the privacy of individuals while still allowing the data to be used for legitimate purposes. \\
-Most of the recent implementations of anonymization works by masking the personal information of a person, such as names and surnames, telephone numbers, addresses, credic card numbers and so on. \\
-One of the most famous library for anonymization is Presidio, developed by Microsoft. Presidio exploits pattern recognition with regex and Named Entity Recognition to find all the personal information of mask them. \\
+Most of the recent implementations of anonymization work by masking the personal information of a person, such as names and surnames, telephone numbers, addresses, credit card numbers and so on. \\
+One of the most famous libraries for anonymization is Presidio, developed by Microsoft. Presidio exploits pattern recognition with regex and Named Entity Recognition to find all the personal information and mask them. \\
 The main disadvantage of such techniques is that often the personal subject can be identified through the so-called quasi-identifiers, that more often than not are not masked.
 \\Here reported some examples that are not masked by Presidio:\\ \\
 Original sentence
@@ -15,19 +15,19 @@ Sentence redacted by Presidio
 \end{adjustwidth}
 Original sentence
 \begin{adjustwidth}{1cm}{}
-    The boss of the HR department of has made some weird comments about how I dress
+    The boss of the HR department has made some weird comments about how I dress
 \end{adjustwidth}
 Sentence redacted by Presidio
 \begin{adjustwidth}{1cm}{}
-    The boss of the HR department of has made some weird comments about how I dress 
+    The boss of the HR department has made some weird comments about how I dress 
 \end{adjustwidth}
 Our new approach exploits a Sequence to Sequence model called T5
-T5 is a model released by Google in 2019, it is a standard encoder-decoder transformer which, unlike BERT, always returns strings as outputs. This is why it is called a sequence to sequence model. \\
+T5 is a model released by Google in 2019, it is a standard encoder-decoder transformer that, unlike BERT, always returns strings as outputs. This is why it is called a sequence-to-sequence model. \\
 T5 is a unified model that can be applied for many downstream tasks, such as sentiment analysis, sentence completation, question answering\dots\\
-In T5 architecture there are \textit{adapted layers} after each feed forward layer, whose scope is to diminish the number of parameters updates for each fine-tuned model. In fact, \textit{adapted layers} are dense-ReLU-dense blocks that are designed so that their input dimensionality and output dimensionality are equal. This let us to insert them into the Transformer architecture without other changes. When fine-tuning for each different task, only the \textit{adapted layers} and the normalization layers will be updated. This results in a considerable reduction of parameters updates.\\
+In T5 architecture there are \textit{adapted layers} after each feed-forward layer, whose scope is to diminish the number of parameter updates for each fine-tuned model. In fact, \textit{adapted layers} are dense-ReLU-dense blocks that are designed so that their input dimensionality and output dimensionality are equal. This lets us insert them into the Transformer architecture without other changes. When fine-tuning for each different task, only the \textit{adapted layers} and the normalization layers will be updated. This results in a considerable reduction of parameter updates.\\
 We followed a few-shot learning approach with T5. Rather than relying on a large amount of training data to allow a pre-trained model to adjust to a given task accurately, few-shot learning employs the use of a few examples to direct the training of a machine learning model with very minimal data. \\
-For each category of tickets, we wrote 10 examples of "anonymized" tickets , where we removed all personal information and information that could retrace to the original writer, maintaning only information that could be useful for analysis purposes.
-Here a couple of examples:\\ \\
+For each category of tickets, we wrote 10 examples of "anonymized" tickets, where we removed all personal information and information that could be retraced to the original writer, maintaining only information that could be useful for analysis purposes.
+Here are a couple of examples:\\ \\
 Original sentence:
 \begin{adjustwidth}{1cm}{}
     Dear Sir/Madame, I cannot stand anymore this discrimination and prejudice against French people at work
@@ -38,7 +38,7 @@ Anonymization used for few-shot learning:
 \end{adjustwidth}
 Original sentence:
 \begin{adjustwidth}{1cm}{}
-    Hello, my name is Zacaredas Pinilla and I work at Laguna-Franco Spain. I am having trouble finding an accommodation in the Algeciras area so if you could help me with this matter it would be greatly appreciated
+    Hello, my name is Zacaredas Pinilla and I work at Laguna-Franco Spain. I am having trouble finding accommodation in the Algeciras area so if you could help me with this matter it would be greatly appreciated
 \end{adjustwidth}
 Anonymization used for few-shot learning:
 \begin{adjustwidth}{1cm}{}
@@ -49,13 +49,13 @@ Anonymization used for few-shot learning:
     \caption{Schema of Ticket Anonymization}
     \label{fig:schema_ticket_anonymization}
 \end{figure}    
-To evaluate the goodness of an anonymization and how much of the information has remained after the anonymization we have used three different methods:
+To evaluate the goodness of anonymization and how much of the information has remained after the anonymization we have used three different methods:
 \begin{itemize}
     \item \textbf{QAGS}: Questions Answering and Generation for summarization
     \item \textbf{SUMMAQA}: Unsupervised metric for reinforced summarization model 
     \item \textbf{Cosine Similarity}
 \end{itemize}  
-These models were originally created to evaluate the goodness of a summarizatoin, we have adapted them to be used for evaluating our anonymization. \\
+These models were created originally to evaluate the goodness of a summarization, we have adapted them to be used for evaluating our anonymization. \\
 The first two methods follow the same philosophy: they generate questions to ask both the original version and the anonymized version of the tickets, looking if the answers are coherent. We call them Questions and Answers models.
 
 \subsection*{QAGS}

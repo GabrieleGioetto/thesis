@@ -1,5 +1,5 @@
 \subsection{Bayesian Network}
-A bayesian network is a machine learning method which combines a probabilistic graphical model with Bayesian inference to infer the likelihood of certain events or outcomes. It is used to find relationships between variables and to identify which variables are most influential in predicting a certain outcome or event. \\
+A Bayesian network is a machine learning method that combines a probabilistic graphical model with Bayesian inference to infer the likelihood of certain events or outcomes. It is used to find relationships between variables and to identify which variables are most influential in predicting a certain outcome or event. \\
 The bayesian network is based on the Bayesian theorem:
 \begin{equation*}
     p(A|\;B) = \frac{p(B|\;A)p(A)}{p(B)}
@@ -10,18 +10,18 @@ Formally, the Bayesian network is a directed acyclic graph G = (V,E) with
     \item A feature for each node i belonging to V
     \item A conditional probability distribution for each edge, so the edge from feature $i$ to $j$ represents $p(x_j|\;x_i)$
   \end{itemize}
-The base version of a Bayesian network works with discrete variables, however there are also implementations that consider also continuous variables \cite{chen2017learning} \\
-Building a Bayesian network starting from the \textit{Absenteeism at work Data Set} is relatively easy, we calculate the likelihood distribution $p(x_i|\;x_j)\:\forall\:x_i, x_j \in D$, where $D$ is the set of features. As a prior we used a Dirichlet distribution, mainly because it is the conjucate prior of the categorical distribution. \\
+The base version of a Bayesian network works with discrete variables, however, some implementations consider also continuous variables \cite{chen2017learning} \\
+Building a Bayesian network starting from the \textit{Absenteeism at work Data Set} is relatively easy, we calculate the likelihood distribution $p(x_i|\;x_j)\:\forall\:x_i, x_j \in D$, where $D$ is the set of features. As a prior, we used a Dirichlet distribution, mainly because it is the conjugate prior of the categorical distribution. \\
 We then added pseudocounts to the observed counts in the data used to calculate $p(x_j|\;x_i)$. This technique is used to diminish the overfitting of data. The values we used for pseudocount is $\gamma=1$. \\
-Since we learn the conditional probability distribution from our data, the structure of the network or the conditional probabilities may therefore leak some information on an individual in the dataset. In order to provide strong privacy guarantees and minimize the re-identification risk, we leverage the notion of differential-privacy: we perturb the data adding a noise sampled from a Laplace distribution 
+Since we learn the conditional probability distribution from our data, the structure of the network or the conditional probabilities may therefore leak some information on an individual in the dataset. In order to provide strong privacy guarantees and minimize the re-identification risk, we leverage the notion of differential privacy: we perturb the data adding a noise sampled from a Laplace distribution 
 \begin{equation*}
     z \sim Laplace \left(0, \frac{2 \cdot n_{features}}{\gamma \cdot \epsilon} \right)
 \end{equation*}
 where $\epsilon$ is the privacy budget for differential privacy, which controls the anonymization level. \\
-Differential privacy is a rigorous mathematical definition of privacy. An algorithm is said to be differentially private if by looking at the output of an algorithm $A$ performed on a dataset $X$, one cannot tell whether any individual's data was included in the original dataset or not. In other words, the guarantee of a differentially private algorithm is that its behavior hardly changes when a single individual joins or leaves the dataset.
+Differential privacy is a rigorous mathematical definition of privacy. An algorithm is said to be differentially private if by looking at the output of an algorithm $A$ performed on a dataset $X$, one cannot tell whether any individual's data was included in the original dataset or not. In other words, a differentially private algorithm guarantees that its behavior hardly changes when a single individual joins or leaves the dataset.
 The mathematical definition of differential privacy is:
 \begin{equation*}
     Pr[A(X) \in Z] \leq e^{\epsilon} \cdot Pr[A(X') \in Z]
 \end{equation*}
-where $A$ is an algorithm and $X'$ is a neighbour dataset of $X$. A dataset is neighbour of another dataset if they differ by only one record. \\ 
+where $A$ is an algorithm and $X'$ is a neighbour dataset of $X$. A dataset is a neighbor of another dataset if they differ by only one record. \\ 
 Once the private Bayesian network is built, we can sample new values for all the nodes in the graph. These generated values will have the same distribution and preserve the consistency and statistical properties of the original dataset up to the noise addition which acts as a de-identification barrier. 

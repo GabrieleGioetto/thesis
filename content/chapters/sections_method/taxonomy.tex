@@ -12,9 +12,9 @@
     \label{fig:final_taxonomy}
 \end{figure}    
 
-Usually HR tickets can belong to various categories, which can range from a request of shift change to a complaint about a superior. \\
-We built a taxonomy of tickets, which is structered in categories and sub categories. Each sub category has its own variables that are used as inputs for the ticket generation. The variables are sampled from the existing datasets mentioned before. \\
-For example to create a request of sick leave, we pass as inputs the reason and the number of days of sick leave requested. Moreover, each category has distinct templates and prompts. The taxonomy (Shown in \autoref{fig:taxonomy} ) has been built following the advise of an HR expert from SAP, however the final taxonomy ( Shown in \autoref{fig:final_taxonomy} ) presented here is a subset of the original one due to the unavailability of public data on certain topics ( Ex. \textit{Work benefits}) \\ The final complete taxonomy and the complete list of all variables used for each category/sub-category can be seen in the \autoref{table:categoriesTable}
+Usually, HR tickets can belong to various categories, which can range from a request for a shift change to a complaint about a superior. \\
+We built a taxonomy of tickets, which is structured into categories and subcategories. Each subcategory has its own variables that are used as inputs for ticket generation. The variables are sampled from the existing datasets mentioned before. \\
+For example, to create a request for sick leave, we pass as inputs the reason and the number of days of sick leave requested. Moreover, each category has distinct templates and prompts. The taxonomy (Shown in \autoref{fig:taxonomy} ) has been built following the advice of an HR expert from SAP, however, the final taxonomy ( Shown in \autoref{fig:final_taxonomy} ) presented here is a subset of the original one due to the unavailability of public data on certain topics ( Ex. \textit{Work benefits}) \\ The final complete taxonomy and the complete list of all variables used for each category/sub-category can be seen in the \autoref{table:categoriesTable}
 
 
 \begin{table}[h]
@@ -22,7 +22,7 @@ For example to create a request of sick leave, we pass as inputs the reason and 
     \begin{tabular}{|l|l|l|}
     \hline
         Category            & Sub-category   & variables                                   \\ \hline
-        Ask Information     & Accomodation   & location, duration                          \\
+        Ask Information     & Accommodation   & location, duration                          \\
         Complaint           & About coworker & complaint, reason                           \\
                             & About superior & complaint, reason                           \\
         Timetable change    & Shift change   & reason\_of\_change, old\_date, new\_date    \\
