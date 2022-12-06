@@ -25,6 +25,7 @@ BERT is quite straightforward to fine-tune, we just need to plug in the necessar
 The first token of a BERT embedding is the [CLS] token, which is a special token that acts as an aggregate representation of the sentence. The final embedding of the [CLS] token is used as input for the classification task. The most simple method, which is also the method used by the BERTForSequenceClassification class by HuggingFace, is to take the embedding of the [CLS] token at the last hidden layer and fed it to a single layer of a feed-forward network. The layer of the feed-forward network will have n input, where n is the dimension of the embedding of a token, and m output, where m is the desired number of outputs. \\
 % TODO: maybe put an image of the BERT architecture with the dropout and final classifier
  
+%TODO: add results
 
 
 

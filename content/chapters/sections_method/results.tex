@@ -115,7 +115,7 @@ Topic modeling is a type of statistical modeling technique used to discover the 
 We used topic modeling to visualize in a summerized form the major topics of our dataset and to verify that the topics created correspond to the ones in the taxonomy. \\
 The model of topic modeling we chose is BERTopic\cite{grootendorst2022bertopic}. BERTopic generates document embedding with pre-trained transformer-based language models, clusters these embeddings, and finally, generates topic representations with the class-based TF-IDF procedure
 \begin{algorithm}
-    \caption{BERTopic}
+    \caption*{BERTopic}
     \begin{algorithmic}[1]
       \State Documents are emdedded to create representations in vector space using Sentence-BERT
       \State The embeddings generated are reduced in dimensionality using UMAP
