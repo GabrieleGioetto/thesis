@@ -119,3 +119,25 @@ First of all, we build a dictionary of the matchings between entities of spacy a
     \end{tabular}}
     \caption{Matching of our entities with Spacy entities}\label{table:entities_match}
 \end{table}
+Then, we scan our dataset and we look for each categorys the entities shown in \autoref{table:entities_match}. If we find an entity not present in the table, it is filtered out. For each entity we will have an array of the type [ ENTITY, START\_CHAR, END\_CHAR ] (\autoref{fig:ticket_NER_NC_1}).\\
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/NER_nc_1.png}
+    \caption{Ticket NER preprocessing part 1}
+    \label{fig:ticket_NER_NC_1}
+\end{figure}    
+After that we tokenize the text of all the tickets and we look up for each ticket its entities tokens. Then for each entity we save the indexes of the corresponding tokens, so for example if the entity "twelve month" is split into two tokens "twelve" and "month", which are the $22^{nd}$ and $23^{rd}$ tokens of the text, then we will save ["twelve month", DATE, [22,23]]. \\
+We also had to manage the case in which a token is not present in the tokenizer vocabulary, so is splitted into sub-tokens. We took advantage of the fact that if a word is splitted in two or more words the new tokens will have the prefix "\#\#". \\
+The number of tokens for each entity can vary, for practical reasons in the training phase we set the maximum number of tokens to $N=50$ (\autoref{fig:ticket_NER_NC_2}).
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/NER_nc_2.png}
+    \caption{Ticket NER preprocessing part 2}
+    \label{fig:ticket_NER_NC_2}
+\end{figure}    
+Now we have all we need for the training. The base architecture is a \textit{bert-base-cased} model, which we modified on the last layer. \\
+In the training phase, we pass to the BERT model at each step the tickets' texts and their entities with the indexes of the matching tokens. For each entity of the ticket there will be a training record. The ticket will be unpacked into 512 tokens, and each token will be processed by the BERT architecture (same architecture as the classifier \autoref{fig:bert_class}). \\
+At the last layer, instead of passing the [CLS] token to a classifier, we concatenate the [CLS] token with the average of all the embeddings of the tokens of the current entity. This is the reason why we preprocessed the dataset to find the indexes of the tokens' indexes for the entities. In BERT base each token has a dimension $d=768$, so the input of the last feed forward neural network will be $N=1536$. The output dimension will be $M=10$ (\autoref{fig:ticket_NER_NC_3}). The labels of the training are the combination of the ticket category and the entity, since for each entity found in a ticket we generate a record ( For example if there are 3 entities in a ticket, there will be 3 records in the training set with the same ticket text, but that will have a different token embedding for the classification in the last layer and they will have different labels)\\
+\begin{figure}[h] 
+    \includegraphics[width=\textwidth]{images/NER_nc_3.png}
+    \caption{Ticket NER training}
+    \label{fig:ticket_NER_NC_3}
+\end{figure}   
