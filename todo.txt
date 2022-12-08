@@ -59,3 +59,6 @@ https://cs.nyu.edu/~roweis/csc412-2004/notes/lec13x.pdf
 
 
 http://tug.ctan.org/macros/latex/contrib/todonotes/todonotes.pdf
+
+
+image 3.7 center and maybe bigger

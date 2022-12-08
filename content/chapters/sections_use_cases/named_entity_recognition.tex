@@ -1,0 +1,121 @@
+\section{Named Entity Recognition}
+
+Named entity recognition is the process of automatically identifying and classifying named entities in a text. This can include identifying and categorizing named entities such as people, organizations, locations, and so on. \\
+NER systems might be used to automatically extract information from a large collection of documents, such as identifying all mentions of specific named entities or analyzing the relationships between different named entities. \\
+
+\subsection{Weak labeling}
+During the creation of the ticket, we tried to automatically save also the entities of the ticket. With entities, we do not mean the classical entities used for NER, but the original variables specific to a ticket's category (complete list in \autoref{table:categoriesTable}). \\
+Finding the entities in the prompt is trivial, since the positions are fixed in the template, and the filling operation is managed by us. \\
+Example:
+\begin{adjustwidth}{1cm}{}
+    From: \$\{email\} \\
+    To: \$\{company email\} \\
+    First name: \$\{first name\}\\
+    Last name: \$\{last name\}\\
+    Company: \$\{company\}\\
+    Date: \$\{ticket date\}
+    Date start absence: \colorbox{yellow!30}{\$\{date\_start\_absence\}}\\
+    Reason absence: \colorbox{yellow!30}{\$\{reason\_absence\}}\\
+    Subject: Request for sick leave for \colorbox{yellow!30}{\$\{days\}}    
+\end{adjustwidth}
+Though the template and prompt serve as our starting point to generate the actual ticket text, it is only this latter part that would be present in a real ticket. Identifying the locations of the entities is not straightforward since I usually provide only the initial information and a limited template, with the rest of the generation being done by GPT. \\
+Once the ticket is generated, to find the entities in the generated text I use 2 different approaches:
+\begin{itemize}
+    \item Exact match
+    \item Heuristics
+\end{itemize}
+The exact match is straight-forward, it just looks for the exact same words in the generated text, and if the word/words are found, the entity is added to the list of entities of the ticket
+However this method often does not work, since GPT could use only part of the entity ( Ex: "A medical consultation" is in the text as "a consultation") or slightly alter the entity ( ex: 01/10/1998 $\rightarrow$ the first of October of 1998 ) \\
+This is the reason why we implemented manually a set of different rules to find modified versions of the original entity in the text. These versions do not cover every possible case, since they are hard-coded by us from experience and by looking at how GPT behaves, this is why we called this approach "Heuristics". \\
+Some of these heuristics are:
+\begin{itemize}
+    \item Check not only the full entity, but also subsets of it removing stopwords\\
+    Example: \\
+    reason\_of\_absence: "An Urinary Tract Infection" $\rightarrow$
+                 \begin{itemize}
+                    \item "Urinary Tract Infection"
+                    \item "Urinary Tract"
+                    \item "Tract Infection"
+                    \item "Urinary"
+                    \item "Tract"
+                    \item "Infection"
+                \end{itemize}
+    \item Check all the possible version of a percentage text\\
+    "5\%", "5 \%", "5.0\%", "5 percent", \dots
+    \item Check different formats of date\\
+    MM/DD/YYYY, DD/MM/YYYY, "First of October", "1st of October", \dots
+
+\end{itemize}
+With this method, we were able to identify entities in only 6272 tickets out of the total 16000 tickets. The complete list of all the entities found is shown in \autoref{table:entities_found_heuristics}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    duration                 & 1016 & increase\_in\_percentage & 539 \\ \hline
+    location                 & 1411 & work\_title & 33 \\ \hline
+    date                     & 70   & wage\_gap & 421 \\ \hline
+    work\_shift              & 70   & number\_of\_days & 982 \\ \hline
+    reason\_of\_change       & 7    & date\_start\_absence & 3 \\ \hline
+    to\_who                  & 1221 & description\_life\_event & 1214 \\ \hline
+    reason                   & 1119 & date\_travel & 112 \\ \hline
+    complaint                & 106  & airport & 28 \\ \hline
+    salary                   & 376  & & \\ \hline
+    \end{tabular}
+    \caption{Entities found with heuristics}\label{table:entities_found_heuristics}
+\end{table}
+
+\subsection{Classical NER}
+Token classification is a common technique used in NER to identify and classify named entities in a text. In token classification, the text is first divided into individual tokens, which are typically words or phrases. The model then predicts a label for each token, indicating the type of named entity it represents.\\
+To assign the labels to the tokens we used the BIO(Beginning, Inside, Outside) format, where the B tag is used for the first token of an entity, the I tag for the rest of the tokens of the entity and lastly the O tag is used for the token that do not belong to any entities. \\
+Example:
+\begin{adjustwidth}{1cm}{}
+    Alex B-PER\\
+    is O\\
+    going O\\
+    to O\\
+    Los B-LOC\\
+    Angeles I-LOC\\
+    in O\\
+    California B-LOC
+\end{adjustwidth}
+The label assigned to each token are then used for a token classification task, using a RoBERTa model and the Spacy training pipeline. \\
+The used the default Spacy parameters for the training. \\
+The survey tickets, used as always as our test set, were manually labelled by ourselves. \\
+%TODO: maye put image of schema token classification for NER
+The results were not satisfying, we achieved a $f_1$ score of 0.34 on the exact matching and a $f_1$ score of 0.45 on the partial matching. When the model finds the correct entity for all the tokens and only the tokens of an entity, it's considered an exact matching. Whereas, wehen the model finds the correct entity for only a subset of the token of an entity, then is considered a partial match\\
+Example exact match:
+\begin{adjustwidth}{1cm}{}
+    to O\\
+    Los LOC\\
+    Angeles LOC\\
+    in O\\
+\end{adjustwidth}
+Example partial match:
+\begin{adjustwidth}{1cm}{}
+    to O\\
+    Los LOC\\
+    Angeles O\\
+    in O\\
+\end{adjustwidth}
+The main problem we encountered was that the entities recognition was not able to recognize the difference entities of the same type depending on the context. For example, the model could not recognize the difference between a date of start absence ( entity of request of time off due to health reasons) and a date of travel ( entity of request of refund for travel).
+
+\subsection{Our approach to NER}
+To overcome the limits of the first approach, we developed a new approach based on transfer learning and sentence classification. \\
+The main intuition behind the new approach is to use the pre-trained spacy NER model and exploit the entities found by the base model to extract our entities. \\
+First of all, we build a dictionary of the matchings between entities of spacy and our entities. We decided to work on a subset of our entities and not consider all the entities that did not have a clear matching with Spacy entities. In \autoref{table:entities_match} we show all the matchings. 
+\begin{table}[h]    
+    \resizebox{\textwidth}{!}{
+    \setlength\extrarowheight{18pt}
+    \begin{tabular}{|l|l|}
+    \hline
+    Category                       & Entities matching                                              \\ \hline
+    Ask information\_Accommodation & \shortstack[l]{\{"location": "GPE", \\"duration": "DATE"\}}                       \\ \hline
+    Life event\_Health issues      & \shortstack[l]{\{"date\_start\_absence": "DATE", \\"number\_of\_days": "DATE"\}} \\ \hline
+    Refund\_Refund travel          & \shortstack[l]{\{"date\_travel": "DATE",\\ "location": "GPE"\}}                  \\ \hline
+    Salary\_Gender pay gap         & \{"wage\_gap": "PERCENT"\}                                     \\ \hline
+    Salary\_Salary raise           & \shortstack[l]{\{"increase\_in\_percentage": "PERCENT",\\"salary": "MONEY"\}}    \\ \hline
+    Timetable change\_Shift change & \{"date": "DATE"\}                                             \\ \hline
+    \end{tabular}}
+    \caption{Matching of our entities with Spacy entities}\label{table:entities_match}
+\end{table}
