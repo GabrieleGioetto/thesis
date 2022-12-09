@@ -46,9 +46,9 @@ Images take from notebook saved on
 - Add ethical consideration part
 - run topic modeling on created tickets and plot them instead of wordcloud maybe
     - https://github.com/MaartenGr/BERTopic#visualize-topics
-- add image of bayesian network
+- add image of bayesian network V
 - add in appendix all prompts additional info
-- add state of the art generative models 
+- add state of the art generative models  V
     - maybe add 
 - Calculate self-bleu 
 

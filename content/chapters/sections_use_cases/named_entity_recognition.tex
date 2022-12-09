@@ -140,4 +140,18 @@ At the last layer, instead of passing the [CLS] token to a classifier, we concat
     \includegraphics[width=\textwidth]{images/NER_nc_3.png}
     \caption{Ticket NER training}
     \label{fig:ticket_NER_NC_3}
+\end{figure}
+At test time, for each ticket in the test set we analyze it with Spacy and we find all the entities. Then we filter the entities: we cannot filter based on the label, since at test time in theory we do not know the label of the tickets. Therefore we filter the entities based on the list of all entities used in all tickets' categories. \\
+Then, as in the training phase, for each entity we build a new record composed of the output of the [CLS] token through the model architecture and of the average of the tokens' embeddings. \\
+For each ticket in the test set we obtain a prediction of its category combined with the entity currently analyzed. 
+\subsubsection*{Results}
+We are able to achieve way better results with the new method that combines a ticket classification with a NER model. On the test set we achieve a $f_1$ score of 0.96. \\
+In \autoref{fig:ticket_NER_NC_conf_matrix} we show the confusion matrix of the classification. \\
+We believe that we are able to achieve such good results because there are few entities that are shared between more categories, and the union of the information of the ticket ([CLS] token) and the information of the entity makes it easy for the model to distinguish both the category and the entity.
+%TODO: add explanation of how we believe we are able to get such high score
+\begin{figure}[h] 
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/conf_matrix_ner_nc.png}
+    \caption{Ticket NER confusion matrix}
+    \label{fig:ticket_NER_NC_conf_matrix}
 \end{figure}   

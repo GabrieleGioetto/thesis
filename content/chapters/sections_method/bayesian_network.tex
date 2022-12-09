@@ -11,7 +11,7 @@ Formally, the Bayesian network is a directed acyclic graph G = (V,E) with
     \item A conditional probability distribution for each edge, so the edge from feature $i$ to $j$ represents $p(x_j|\;x_i)$
   \end{itemize}
 The base version of a Bayesian network works with discrete variables, however, some implementations consider also continuous variables \cite{chen2017learning} \\
-Building a Bayesian network starting from the \textit{Absenteeism at work Data Set} is relatively easy, we calculate the likelihood distribution $p(x_i|\;x_j)\:\forall\:x_i, x_j \in D$, where $D$ is the set of features. As a prior, we used a Dirichlet distribution, mainly because it is the conjugate prior of the categorical distribution. \\
+Building a Bayesian network starting from the \textit{Absenteeism at work Data Set} is relatively easy, we calculate the likelihood distribution $p(x_i|\;x_j)\;\forall\:x_i, x_j \in D$, where $D$ is the set of features. As a prior, we used a Dirichlet distribution, mainly because it is the conjugate prior of the categorical distribution. \\
 We then added pseudocounts to the observed counts in the data used to calculate $p(x_j|\;x_i)$. This technique is used to diminish the overfitting of data. The values we used for pseudocount is $\gamma=1$. \\
 Since we learn the conditional probability distribution from our data, the structure of the network or the conditional probabilities may therefore leak some information on an individual in the dataset. In order to provide strong privacy guarantees and minimize the re-identification risk, we leverage the notion of differential privacy: we perturb the data adding a noise sampled from a Laplace distribution 
 \begin{equation*}

@@ -8,7 +8,7 @@ The Pile dataset\cite{gao2020pile} is an 825 GiB English text corpus composed by
     \item Dialogue ( \textit{Subtitles}, ... )
     \item Misc ( \textit{Github}, ... )
 \end{itemize}
-\vspace{0.5cm}
+\subsection{Parameters}
 The parameters used for the generation of the next token are:
 \begin{itemize}
     \item \textit{min\_length}: minimum number of words created by a round of gpt generation
@@ -26,8 +26,7 @@ The parameters used for the generation of the next token are:
     \end{equation*}
     \begin{center}
     $I(c) = \theta$ if $c$ is True else 1
-    \end{center}
-
+    \end{center}    
     So the logits distribution of the token change based on if the token has already been generated before.
 
     \item \textit{length\_penalty}: \textit{length\_penalty} $>$ 0 promotes longer sequences, while \linebreak 
@@ -69,13 +68,13 @@ force words & [\space] \\ \hline
 \end{tabular}
 \caption{Parameters of GPT-J model}\label{table:parametersGPTJTable}
 \end{table}
-
+\subsection{Architecture}
 The GPT architecture is based on the original Transformers paper. The original architecture introduced two types of transformers blocks: the encoder block and the decoder block. \\
 The encoder block converts an input sequence of tokens into a sequence of embedding vectors, whereas the decoder takes the output of the encoder and generate iteratively an output sequence of tokens. \\
 GPT is pre-trained by predicting the next word based on the previous ones. \\
 GPT is decoder-only, which means that is assembled only by a stack of decoder blocks. Each decoder block is composed by:
 \begin{itemize}
-    \item Normalization Layers: a normalization layer \cite{ba2016layer} normalize all inputs of a neural network across their features. It has been shown that Layer normalization enables smoother gradients, faster training, and better generalization accuracy \cite{xu2019understanding}
+    \item \textbf{Normalization Layers}: a normalization layer \cite{ba2016layer} normalize all inputs of a neural network across their features. It has been shown that Layer normalization enables smoother gradients, faster training, and better generalization accuracy \cite{xu2019understanding}
 
     $x$: data sample \\
     $d$: dimension of data sample \\
@@ -96,7 +95,7 @@ GPT is decoder-only, which means that is assembled only by a stack of decoder bl
     \end{equation*}
 
     where $\gamma$ and $\beta$ are parameters that the model learns.
-    \item Masked Self-Attention Layer: attention is a mechanism that allows neural networks to assign a different amount of weight to each token in a sequence and process each token as a weighted average of all other tokens. \\
+    \item \textbf{Masked Self-Attention Layer}: attention is a mechanism that allows neural networks to assign a different amount of weight to each token in a sequence and process each token as a weighted average of all other tokens. \\
     In practice three matrixes are calculated:
     \begin{itemize}
         \item $Q$ (Query): the representation of the current token
@@ -122,8 +121,7 @@ GPT is decoder-only, which means that is assembled only by a stack of decoder bl
 
     \includegraphics[width=0.90\textwidth]{images/masked_self_attention.drawio.png}
 
-    % TODO: insert image of masked self attention
-    \item Feed Forward Neural Network Layer: Used to add non-linearity to the transformer block
+    \item \textbf{Feed Forward Neural Network Layer}: Used to add non-linearity to the transformer block
 \end{itemize}
 
 \begin{figure}[h] 
@@ -149,7 +147,7 @@ Compared to GPT-3, GPT-J\cite{gptj} has two minor architectural differences  ( s
 \end{itemize}
 
 \subsubsection{Rotary Position Embedding}
-Position embeddings are used to infer the notion of position to the model, which does not have any sense of position for each token. In other words, using the attention mechanism each token "match" with the other tokens in the same manner, not considering where if the other token is located right after the current one or if it is at the end of the sentence. Position embeddings are used to add to the model this sense of position. \\ Rotary position embedding has been introduced by Su et al., it is a novel method that unifies absolute and relative approaches to position embeddings. \\
+Position embeddings are used to infer the notion of position to the model, which does not have any sense of position for each token. In other words, using the attention mechanism each token "match" with the other tokens in the same manner, not considering where if the other token is located right after the current one or if it is at the end of the sentence. Position embeddings are used to add to the model this sense of position. \\ Rotary position embedding has been introduced by Su et al.\cite{su2021roformer}, it is a novel method that unifies absolute and relative approaches to position embeddings. \\
 The typical approach, that is also used by GPT-3, is to use a sinusoidal embedding, which is defined as
 \begin{equation*}
     \begin{cases}
