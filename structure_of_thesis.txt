@@ -25,4 +25,5 @@ Index:
     - NER
     - Anonymization ( T5 approach )
     - Summarization 
+- Ethical consideration
 - Conclusion

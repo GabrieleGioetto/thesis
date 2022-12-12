@@ -44,12 +44,12 @@ make distinction between FNN part and activation part, maybe add two distinct pl
 Images take from notebook saved on 
 - Add most frequent words by category ( maybe wordcloud )
 - Add ethical consideration part
-- run topic modeling on created tickets and plot them instead of wordcloud maybe
+- run topic modeling on created tickets and plot them instead of wordcloud maybe V
     - https://github.com/MaartenGr/BERTopic#visualize-topics
 - add image of bayesian network V
 - add in appendix all prompts additional info
 - add state of the art generative models  V
-    - maybe add 
+- Insert possible future improvements
 - Calculate self-bleu 
 
 Bayesian
