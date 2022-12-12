@@ -113,7 +113,7 @@ GPT is decoder-only, which means that is assembled only by a stack of decoder bl
     \begin{equation*}
         Attention(Q,K,V) = softmax \left(\frac{QK^T}{\sqrt{d}}\right)V
     \end{equation*}
-    where $d$ is a normalization factor equivalent to the embeddings dimension \\
+    where $d$ is a normalization factor equivalent to the embeddings' dimension \\
     The masked self-attention is a modified version of self-attention where all the tokens that appear after the current one are set to $0$, in order not to let the model being influenced by any information regarding the tokens at the next positions. This is fundemental when training generative models such as GPT, whose scope is to predict the successive tokens.
     \begin{equation*}
         Attention(Q,K,V) = softmax\left(\frac{QK^T + Mask}{\sqrt{d}}\right)V
@@ -148,7 +148,7 @@ Compared to GPT-3, GPT-J\cite{gptj} has two minor architectural differences  ( s
 
 \subsubsection{Rotary Position Embedding}
 Position embeddings are used to infer the notion of position to the model, which does not have any sense of position for each token. In other words, using the attention mechanism each token "match" with the other tokens in the same manner, not considering where if the other token is located right after the current one or if it is at the end of the sentence. Position embeddings are used to add to the model this sense of position. \\ Rotary position embedding has been introduced by Su et al.\cite{su2021roformer}, it is a novel method that unifies absolute and relative approaches to position embeddings. \\
-The typical approach, that is also used by GPT-3, is to use a sinusoidal embedding, which is defined as
+The typical approach, which is also used by GPT-3, is to use a sinusoidal embedding, which is defined as
 \begin{equation*}
     \begin{cases}
         p_{1,2t} = sin(k/10000^{2t/d}) \\
@@ -165,7 +165,7 @@ If we define
     \end{split}    
 \end{equation*}
 
-where $f_q$ and $f_k$ are functions that incorporates the $m^{th}$ and $n^{th}$ positions respectively to the vector embeddings $x_m$ and $x_n$ to produce the query and key vectors, we can require the inner product of the query $q_m$ and $k_n$ to be formulated by a function $g$ that depends only on the word embeddings $x_m$, $x_n$ and their relative position $m - n$
+where $f_q$ and $f_k$ are functions that incorporate the $m^{th}$ and $n^{th}$ positions respectively to the vector embeddings $x_m$ and $x_n$ to produce the query and key vectors, we can require the inner product of the query $q_m$ and $k_n$ to be formulated by a function $g$ that depends only on the word embeddings $x_m$, $x_n$ and their relative position $m - n$
 \begin{equation*}
     \langle f_q(x_m, m) \: , \: f_k(x_n, n) \rangle = g(x_m,x_n,m-n)
 \end{equation*}

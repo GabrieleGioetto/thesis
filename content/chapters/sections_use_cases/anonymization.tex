@@ -23,7 +23,7 @@ Sentence redacted by Presidio
 \end{adjustwidth}
 Our new approach exploits a Sequence to Sequence model called T5
 T5 is a model released by Google in 2019, it is a standard encoder-decoder transformer that, unlike BERT, always returns strings as outputs. This is why it is called a sequence-to-sequence model. \\
-T5 is a unified model that can be applied for many downstream tasks, such as sentiment analysis, sentence completation, question answering\dots\\
+T5 is a unified model that can be applied for many downstream tasks, such as sentiment analysis, sentence completion, question answering\dots\\
 In T5 architecture there are \textit{adapted layers} after each feed-forward layer, whose scope is to diminish the number of parameter updates for each fine-tuned model. In fact, \textit{adapted layers} are dense-ReLU-dense blocks that are designed so that their input dimensionality and output dimensionality are equal. This lets us insert them into the Transformer architecture without other changes. When fine-tuning for each different task, only the \textit{adapted layers} and the normalization layers will be updated. This results in a considerable reduction of parameter updates.\\
 We followed a few-shot learning approach with T5. Rather than relying on a large amount of training data to allow a pre-trained model to adjust to a given task accurately, few-shot learning employs the use of a few examples to direct the training of a machine learning model with very minimal data. \\
 For each category of tickets, we wrote 10 examples of "anonymized" tickets, where we removed all personal information and information that could be retraced to the original writer, maintaining only information that could be useful for analysis purposes.
@@ -57,7 +57,7 @@ To evaluate the goodness of anonymization and how much of the information has re
 \end{itemize}  
 These models were created originally to evaluate the goodness of a summarization, we have adapted them to be used for evaluating our anonymization. \\
 The first two methods follow the same philosophy: they generate questions to ask both the original version and the anonymized version of the tickets, looking if the answers are coherent. We call them Questions and Answers models.
-However they have few key differences. SummaQA do not create natural sentence questions but uses as questions the masked version of the sentences. Instead QAGS create natural language questions using a pre-trained model.
+However, they have a few key differences: SummaQA does not create natural sentence questions but uses as questions the masked version of the sentences. Instead, QAGS creates natural language questions using a pre-trained model.
 \subsection*{QAGS}
 QAGS is an automatic evaluation protocol that is based on the assumption that if we reply to questions considering as factual bases the summary and the source, we can determine if the summary/anonymization is consistent with its source by comparing the answers. \\
 QAGS works like this:
@@ -66,7 +66,7 @@ QAGS works like this:
     \begin{algorithmic}[1]
       \State A BART model is fine-tuned for question generation: the model receives both the answers and the source article from the NewsQA dataset and is trained to maximize the likelihood of the paired question
       \State At test time, named entities and noun phrases are extracted from the context using spaCy and are considered as answers candidates. The summary is used as the context.
-      \State The BART model generates question based on the summary and its entities
+      \State The BART model generates questions based on the summary and its entities
       \State A BERT model is fine-tuned for Question Answering on the SQuAD dataset
       \State We answer with the help of the fine-tuned BERT model the questions generated beforehand using both the source article and the summary to get two sets of answers. 
       \State We compare the corresponding answers using an answer similarity metric, and we get a final score averaging the answer similarity metric (f1 score) over all questions
@@ -86,7 +86,7 @@ SUMMAQA works similarly to QAGS, the main difference is that there is not a gene
     \end{algorithmic}
 \end{algorithm}
 \subsection*{Cosine Similarity}
-We measured the cosine similarity between sentence embeddings of original text and summarization. The sentence embeddings used were calculated using Sentence-BERT, a modified version of the pretrained BERT network that uses siamese networks to obtain more meaningful embedding of the sentence, compared to getting the embedding of the [CLS] token or to average all the other emeddings.
+We measured the cosine similarity between sentence embeddings of original text and summarization. The sentence embeddings used were calculated using Sentence-BERT, a modified version of the pretrained BERT network that uses siamese networks to obtain more meaningful embedding of the sentence, compared to getting the embedding of the [CLS] token or to average all the other embeddings.
 
 %TODO: maybe put little schema of Siamese network of sentence-bert
 

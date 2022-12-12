@@ -1,8 +1,8 @@
 \section{Classification}
 Sentence classification is a natural language processing task that involves assigning a predefined category or label to a given sentence. One way to approach sentence classification is to use word embeddings, which are numerical representations of words that capture their meaning and context within a sentence. Word embeddings can be generated using various techniques, such as training a neural network on a large dataset of text or using a pre-trained language model. \\
 Once the word embeddings have been generated, you can input them into a classifier along with other features of the sentence, such as its grammatical structure, to make predictions about the sentence's category or label. The classifier uses the word embeddings as input to make predictions about the sentence's category or label. \\
-We used two different pre-trained language model: BERT and fastText. We chose BERT because it is a widely used and well-studied model, and our objective was not to find the absolute best classifier, but only to show that the dataset could be used as training data. \\
-Instead, we chose fastText to have an option which was CPU-friendly, and that could be trained in a matter of a few minutes. \\
+We used two different pre-trained language models: BERT and fastText. We chose BERT because it is a widely used and well-studied model, and our objective was not to find the absolute best classifier, but only to show that the dataset could be used as training data. \\
+Instead, we chose fastText to have an option that was CPU-friendly, and that could be trained in a matter of a few minutes. \\
 The training data used were the texts of the 16000 tickets that compose the HR ticket dataset, whereas the test data were the survey tickets. The labels were the combination of ticket category and ticket subcategory of each ticket ( Ex. "Life event\_Health issues").
 
 
@@ -35,8 +35,8 @@ The final model is shown in \autoref{fig:bert_class}
 \end{figure}
 
 \subsection{Results}
-In this section we show the results of the classification experiments. We want to reiterate that the point of the experiments was not to get the best possible results, therefore the models were not trained for a large amount of epochs and we did not try an excessive number of possible hyperparameters.
-The hyperparameters tried are shown in \autoref{table:hyp_fasttext} and \autoref{table:hyp_bert}. If an hyperparameter is not shown in the table it means we have used its default value. \\
+In this section we show the results of the classification experiments. We want to reiterate that the point of the experiments was not to get the best possible results, therefore the models were not trained for a large number of epochs and we did not try an excessive number of possible hyperparameters.
+The hyperparameters tried are shown in \autoref{table:hyp_fasttext} and \autoref{table:hyp_bert}. If a hyperparameter is not shown in the table it means we have used its default value. \\
 The technique used for finding the optimal hyperparameters is Grid Search, which means we have trained and tested the models for each combination of all the chosen values of the hyperparameters to determine the hyperparameters' set which achieves the best results.
 
 \begin{table}[h]
@@ -44,7 +44,7 @@ The technique used for finding the optimal hyperparameters is Grid Search, which
   \hline
   Size of context window (ws)                   & 5      \\ \hline
   epochs                                        & 20     \\ \hline
-  minimal number of word occurencies (minCount) & 1      \\ \hline
+  minimal number of word occurrences (minCount) & 1      \\ \hline
   max length of word ngram (wordNgrams)         & 3      \\ \hline
   learning rate (lr)                            & 0.5    \\ \hline
   learning update rate (lrUpdateRate)           & 100    \\ \hline
@@ -74,7 +74,7 @@ On the other hand, the BERT classifier with hyperparameters\begin{itemize}
   \item train batch size: 8
   \item warmup steps: 500
 \end{itemize}
-achieved an $f_1$ score of 0.78. We show also the confusion matrix( \autoref{fig:conf_matrix_bert_class} ) to highlight how the majority of errors comes from two sub-categories that belong to the same category, in particular "Gender wage gap"-"Salary raise" and "Personal issues"-"Health issues". In some way, this validates our initial decision on the taxonomy of the tickets.
+achieved an $f_1$ score of 0.78. We show also the confusion matrix( \autoref{fig:conf_matrix_bert_class} ) to highlight how the majority of errors come from two sub-categories that belong to the same category, in particular, "Gender wage gap"-"Salary raise" and "Personal issues"-"Health issues". In some way, this validates our initial decision on the taxonomy of the tickets.
 \begin{figure}[h] 
   \centering
   \includegraphics[width=0.8\textwidth]{images/conf_matrix_bert_class.png}

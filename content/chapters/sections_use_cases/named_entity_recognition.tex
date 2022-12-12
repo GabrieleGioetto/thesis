@@ -67,7 +67,7 @@ With this method, we were able to identify entities in only 6272 tickets out of 
 
 \subsection{Classical NER}
 Token classification is a common technique used in NER to identify and classify named entities in a text. In token classification, the text is first divided into individual tokens, which are typically words or phrases. The model then predicts a label for each token, indicating the type of named entity it represents.\\
-To assign the labels to the tokens we used the BIO(Beginning, Inside, Outside) format, where the B tag is used for the first token of an entity, the I tag for the rest of the tokens of the entity and lastly the O tag is used for the token that do not belong to any entities. \\
+To assign the labels to the tokens we used the BIO(Beginning, Inside, Outside) format, where the B tag is used for the first token of an entity, the I tag for the rest of the tokens of the entity and lastly the O tag is used for the tokens that do not belong to any entities. \\
 Example:
 \begin{adjustwidth}{1cm}{}
     Alex B-PER\\
@@ -79,9 +79,9 @@ Example:
     in O\\
     California B-LOC
 \end{adjustwidth}
-The label assigned to each token are then used for a token classification task, using a RoBERTa model and the Spacy training pipeline. \\
-The used the default Spacy parameters for the training. \\
-The survey tickets, used as always as our test set, were manually labelled by ourselves. \\
+The labels assigned to each token are then used for a token classification task, using a RoBERTa model and the Spacy training pipeline. \\
+We used the default Spacy parameters for the training. \\
+The survey tickets, used as always as our test set, were manually labeled by ourselves. \\
 %TODO: maye put image of schema token classification for NER
 The results were not satisfying, we achieved a $f_1$ score of 0.34 on the exact matching and a $f_1$ score of 0.45 on the partial matching. When the model finds the correct entity for all the tokens and only the tokens of an entity, it's considered an exact matching. Whereas, wehen the model finds the correct entity for only a subset of the token of an entity, then is considered a partial match\\
 Example exact match:
@@ -98,12 +98,12 @@ Example partial match:
     Angeles O\\
     in O\\
 \end{adjustwidth}
-The main problem we encountered was that the entities recognition was not able to recognize the difference entities of the same type depending on the context. For example, the model could not recognize the difference between a date of start absence ( entity of request of time off due to health reasons) and a date of travel ( entity of request of refund for travel).
+The main problem we encountered was that the NER model was not able to recognize the different entities of the same type depending on the context. For example, the model could not recognize the difference between a date of start absence ( entity of request of time off due to health reasons) and a date of travel ( entity of request of refund for travel).
 
 \subsection{Our approach to NER}
 To overcome the limits of the first approach, we developed a new approach based on transfer learning and sentence classification. \\
 The main intuition behind the new approach is to use the pre-trained spacy NER model and exploit the entities found by the base model to extract our entities. \\
-First of all, we build a dictionary of the matchings between entities of spacy and our entities. We decided to work on a subset of our entities and not consider all the entities that did not have a clear matching with Spacy entities. In \autoref{table:entities_match} we show all the matchings. 
+First of all, we build a dictionary of the matchings between entities of Spacy and our entities. We decided to work on a subset of our entities and not consider all the entities that did not have a clear matching with Spacy entities. In \autoref{table:entities_match} we show all the matchings. 
 \begin{table}[h]    
     \resizebox{\textwidth}{!}{
     \setlength\extrarowheight{18pt}
@@ -119,14 +119,14 @@ First of all, we build a dictionary of the matchings between entities of spacy a
     \end{tabular}}
     \caption{Matching of our entities with Spacy entities}\label{table:entities_match}
 \end{table}
-Then, we scan our dataset and we look for each categorys the entities shown in \autoref{table:entities_match}. If we find an entity not present in the table, it is filtered out. For each entity we will have an array of the type [ ENTITY, START\_CHAR, END\_CHAR ] (\autoref{fig:ticket_NER_NC_1}).\\
+Then, we scan our dataset and look for all categories, the entities shown in \autoref{table:entities_match}. If we find an entity not present in the table, it is filtered out. For each entity, we will have an array of the type [ ENTITY, START\_CHAR, END\_CHAR ] (\autoref{fig:ticket_NER_NC_1}).\\
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/NER_nc_1.png}
     \caption{Ticket NER preprocessing part 1}
     \label{fig:ticket_NER_NC_1}
 \end{figure}    
-After that we tokenize the text of all the tickets and we look up for each ticket its entities tokens. Then for each entity we save the indexes of the corresponding tokens, so for example if the entity "twelve month" is split into two tokens "twelve" and "month", which are the $22^{nd}$ and $23^{rd}$ tokens of the text, then we will save ["twelve month", DATE, [22,23]]. \\
-We also had to manage the case in which a token is not present in the tokenizer vocabulary, so is splitted into sub-tokens. We took advantage of the fact that if a word is splitted in two or more words the new tokens will have the prefix "\#\#". \\
+After that, we tokenize the text of all the tickets and we look up for each ticket its entities' tokens. Then for each entity, we save the indexes of the corresponding tokens, so for example if the entity "twelve months" is split into two tokens "twelve" and "month", which are the $22^{nd}$ and $23^{rd}$ tokens of the text, then we will save ["twelve months", DATE, [22,23]]. \\
+We also had to manage the case in which a token is not present in the tokenizer vocabulary, so is split into sub-tokens. We took advantage of the fact that if a word is split into two or more words the new tokens will have the prefix "\#\#". \\
 The number of tokens for each entity can vary, for practical reasons in the training phase we set the maximum number of tokens to $N=50$ (\autoref{fig:ticket_NER_NC_2}).
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/NER_nc_2.png}
@@ -134,21 +134,20 @@ The number of tokens for each entity can vary, for practical reasons in the trai
     \label{fig:ticket_NER_NC_2}
 \end{figure}    
 Now we have all we need for the training. The base architecture is a \textit{bert-base-cased} model, which we modified on the last layer. \\
-In the training phase, we pass to the BERT model at each step the tickets' texts and their entities with the indexes of the matching tokens. For each entity of the ticket there will be a training record. The ticket will be unpacked into 512 tokens, and each token will be processed by the BERT architecture (same architecture as the classifier \autoref{fig:bert_class}). \\
+In the training phase, we pass to the BERT model at each step the tickets' texts and their entities with the indexes of the matching tokens. For each entity of the ticket, there will be a training record. The ticket will be unpacked into 512 tokens, and each token will be processed by the BERT architecture (same architecture as the classifier \autoref{fig:bert_class}). \\
 At the last layer, instead of passing the [CLS] token to a classifier, we concatenate the [CLS] token with the average of all the embeddings of the tokens of the current entity. This is the reason why we preprocessed the dataset to find the indexes of the tokens' indexes for the entities. In BERT base each token has a dimension $d=768$, so the input of the last feed forward neural network will be $N=1536$. The output dimension will be $M=10$ (\autoref{fig:ticket_NER_NC_3}). The labels of the training are the combination of the ticket category and the entity, since for each entity found in a ticket we generate a record ( For example if there are 3 entities in a ticket, there will be 3 records in the training set with the same ticket text, but that will have a different token embedding for the classification in the last layer and they will have different labels)\\
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/NER_nc_3.png}
     \caption{Ticket NER training}
     \label{fig:ticket_NER_NC_3}
 \end{figure}
-At test time, for each ticket in the test set we analyze it with Spacy and we find all the entities. Then we filter the entities: we cannot filter based on the label, since at test time in theory we do not know the label of the tickets. Therefore we filter the entities based on the list of all entities used in all tickets' categories. \\
+At test time, for each ticket in the test set, we analyze it with Spacy and we find all the entities. Then we filter the entities: we cannot filter based on the label, since at test time in theory we do not know the label of the tickets. Therefore we filter the entities based on the list of all entities used in all tickets' categories. \\
 Then, as in the training phase, for each entity we build a new record composed of the output of the [CLS] token through the model architecture and of the average of the tokens' embeddings. \\
 For each ticket in the test set we obtain a prediction of its category combined with the entity currently analyzed. 
 \subsubsection*{Results}
-We are able to achieve way better results with the new method that combines a ticket classification with a NER model. On the test set we achieve a $f_1$ score of 0.96. \\
+We are able to achieve way better results with the new method that combines a ticket classifier with a NER model. On the test set we achieve a $f_1$ score of 0.96. \\
 In \autoref{fig:ticket_NER_NC_conf_matrix} we show the confusion matrix of the classification. \\
 We believe that we are able to achieve such good results because there are few entities that are shared between more categories, and the union of the information of the ticket ([CLS] token) and the information of the entity makes it easy for the model to distinguish both the category and the entity.
-%TODO: add explanation of how we believe we are able to get such high score
 \begin{figure}[h] 
     \centering
     \includegraphics[width=0.8\textwidth]{images/conf_matrix_ner_nc.png}

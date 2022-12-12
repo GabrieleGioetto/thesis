@@ -30,7 +30,6 @@ The final equation is:
 \\
 We experimented this method to generate the tickets' texts. The topic-word matrix was calculated starting from 20 Newsgroups, a dataset of 18000 news posts on 20 topics. \\
 
-% TODO: add examples of topical generation
 Topic used: football
 \begin{adjustwidth}{1cm}{}
     [\dots] \\
@@ -59,3 +58,8 @@ Topic used: president, government
 The possible future implementations of the ticket generation could be completely executed with a unique prompt, letting the user choose the topic from a set of pre-trained topics. This would be more flexible than the current method since to add new categories it would be sufficient to add a new row to the topic-word matrix. \\
 However, the current results were not satisfying: the created tickets were not fluent and we did not find a corpus to create a topic-word matrix of topics related to the HR ticketing environment.
 
+\subsection{Fine-tune GPT}
+GPT can be adapted to a particular task by fine-tuning, either by supplying it with a dataset tailored to said task, or by manually adjusting the model's parameters. This process allows the model to be customized and to achieve much better results on the desired task. \\
+As mentioned before, we want to generate tickets with a language and style similar to emails. Fine-tuning the model on the \textit{Enron dataset} should improve the performance of the model at generating new Enron-style emails compared to the generic trained model. \\
+We tried fine-tuning GPT-J on only the \textit{\_sent\_mail} folders of the dataset. However, the tickets generated were not much different than the ones created by the base model. The evaluation was carried out only by looking at the tickets generated one by one, without using any sort of metrics.\\
+After various tests, we ascertained that with prompt tuning we could have equal results as with the fine-tuning of the model, avoiding to spend time to fine-tune the model.
