@@ -1,6 +1,6 @@
 \section{State of The Art auto-regressive language model}
-Autoregressive transformer-based Large Language Models are a sequence-to-sequence deep learning model that are pre-trained on a large corpus of data. They are designed to generate new tokens conditioning the model on some input text. The output probability distribution for the next token that the model generates is a probability distribution over all possible tokens in the corpus. \\
-Autoregressive transformer-based Large Language Models have shown ability to solve many tasks\cite{gpt3}, varying from more classicalones like translation and question-answering to more peculiar one, like common sense reasoning and reading comprehension. \\
+Autoregressive transformer-based Large Language Models are sequence-to-sequence deep learning models that are pre-trained on a large corpus of data. They are designed to generate new tokens conditioning the model on some input text. The output probability distribution for the next token that the model generates is a probability distribution over all possible tokens in the corpus. \\
+Autoregressive transformer-based Large Language Models have shown ability to solve many tasks\cite{gpt3}, varying from more classical ones like translation and question-answering to more peculiar ones, like common sense reasoning and reading comprehension. \\
 Mathematically, language models seek to maximize the likelihood of seeing some sentence by considering the product of conditional probabilities up to the point of generation
 \begin{equation}
     p(w_T|\;\theta) = \prod_{i=1}^{T}p(w_i|\;w_{1,..,i-1}, \theta)

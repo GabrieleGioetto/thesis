@@ -2,14 +2,14 @@
 \label{sec:Introduction}
 
 
-With the advent of deep learning a lot of applications have been needing more and more data. However, more often than not, these data contain a large amount of sensitive and personal information that restricts its use according to the legal framework in place in many countries. \\
+With the advent of deep learning, a lot of applications have been needing more and more data. However, more often than not, these data contain a large amount of sensitive and personal information that restricts its use according to the legal framework in place in many countries. \\
 Data is growing rapidly within companies, containing a great deal of sensitive information that can't be processed or shared without due consideration of legal ramifications. If such data could reveal the identity of someone, their personal rights would be threatened. \\
-This is especially relevant in the context of HR tickets, which can contain not only personal information but also special categories of personal data, which require extra protection in accordance with GDPR. \\
+This is especially relevant in the context of HR tickets, which can contain not only personal information but also special categories of personal data, which require extra protection according to GDPR. \\
 
 
 \section{GDPR}
-The General Data Protection Regulation is a privacy regulation that regulates the processing of personal data "wholly or partly by automated means and to the processing other than by automated means". The regulation applies to all citizens of the EU and to all data subjects in the EU, whether the processing is carried out inside or outside the EU. \\
-Personal data are defined as "any information relating to an identified or identifiable natural person". The regulation states that "an identifiable natural person is one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person". The natural person can be identified both by direct identifiers and quasi-identifiers. The direct identifiers are information that directly identifies the person, such as the telephone number, the social security number\dots, while the quasi-identifiers are information that alone cannot identify a person, but if they are combined with other quasi-identifiers can affect a person's privacy. For example, the job title could be not enough to identify a person, but combined with his/her company and his/her nationality it could be. \\
+The General Data Protection Regulation is a privacy regulation that regulates the processing of personal data \textit{"wholly or partly by automated means and to the processing other than by automated means"}. The regulation applies to all citizens of the EU and to all data subjects in the EU, whether the processing is carried out inside or outside the EU. \\
+Personal data are defined as \textit{"any information relating to an identified or identifiable natural person"}. The regulation states that \textit{"an identifiable natural person is one who can be identified, directly or indirectly, in particular by reference to an identifier such as a name, an identification number, location data, an online identifier or to one or more factors specific to the physical, physiological, genetic, mental, economic, cultural or social identity of that natural person"}. The natural person can be identified both by direct identifiers and quasi-identifiers. The direct identifiers are information that directly identify the person, such as the telephone number, social security number\dots, while the quasi-identifiers are information that alone cannot identify a person, but if they are combined with other quasi-identifiers can affect a person's privacy. For example, the job title could be not enough to identify a person, but combined with his/her company and his/her nationality it could be. \\
 Moreover, the GDPR treats some categories of personal data more carefully. These categories are called 'special categories' and include racial or ethnic origin, political opinions, religious or philosophical beliefs, trade union membership, genetic data, biometric data, data concerning health or data concerning a natural person's sex life or sexual orientation \\
 The special categories of personal data cannot be generally processed, with some exceptions including "the data subject has given explicit consent to the processing of those personal data for one or more specified purposes".\\
 
@@ -19,12 +19,11 @@ Synthetic data is artificial data that is generated from real data and has the s
 Synthetic data has many benefits over real data: if you create a model that generates synthetic data you can generate how many data you need, you can infer certain properties to your data ( for example it can be useful for bias and fairness research ) and above all, synthetic data can respect the right to personal data protection. It is important to point out that it is not always guaranteed that synthetic data is privacy-preserving: it has been shown that synthetic data can leak personal information \cite{bellovin2019privacy}.\\
 
 \section{Ticket Generation}
-We created a tool that can be used to create an unlimited amount of synthetic HR tickets and we published a dataset of 16000 tickets. Each ticket, other than the ticket's text, is composed of a category, sub-category and the entities of the ticket. The tickets are not created from scratch, but starting from a dataset of real data and some prompts that help the model generate the text. \\
+We created a tool that can be used to create an unlimited amount of synthetic HR tickets and we published a dataset of 16000 tickets. Each ticket, other than the ticket's text, is composed of a category, sub-category and the entities of the ticket. The tickets are not created from scratch, but starting from real-world's datasets and some prompts that help the model generate the text. \\
 We did a survey internal to the company to gather some real data, and we changed the ticket generation parameters in order to respect the real data with respect to different text metrics. \\
 Finally, we showed different possible use cases for the dataset:
 \begin{itemize}
     \item Ticket Anonymization
     \item Ticket Classification
     \item Named Entity Recognition on tickets' entities
-    \item Ticket Summarization
 \end{itemize}
