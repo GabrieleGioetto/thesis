@@ -53,18 +53,18 @@ To evaluate the goodness of anonymization and how much of the information has re
 \begin{itemize}
     \item \textbf{QAGS}: Questions Answering and Generation for summarization
     \item \textbf{SUMMAQA}: Unsupervised metric for reinforced summarization model 
-    \item \textbf{Cosine Similarity}
+    \item \textbf{Cosine Similarity}: Cosine similarity of embeddings
 \end{itemize}  
 These models were created originally to evaluate the goodness of a summarization, we have adapted them to be used for evaluating our anonymization. \\
 The first two methods follow the same philosophy: they generate questions to ask both the original version and the anonymized version of the tickets, looking if the answers are coherent. We call them Questions and Answers models.
 However, they have a few key differences: SummaQA does not create natural sentence questions but uses as questions the masked version of the sentences. Instead, QAGS creates natural language questions using a pre-trained model.
-\subsection*{QAGS}
+\subsection{QAGS}
 QAGS is an automatic evaluation protocol that is based on the assumption that if we reply to questions considering as factual bases the summary and the source, we can determine if the summary/anonymization is consistent with its source by comparing the answers. \\
 QAGS works like this:
-\begin{algorithm}
+\begin{algorithm}[h]
     \caption*{QAGS}
     \begin{algorithmic}[1]
-      \State A BART model is fine-tuned for question generation: the model receives both the answers and the source article from the NewsQA dataset and is trained to maximize the likelihood of the paired question
+      \State A BART\cite{lewis2019bart} model is fine-tuned for question generation: the model receives both the answers and the source article from the NewsQA dataset and is trained to maximize the likelihood of the paired question
       \State At test time, named entities and noun phrases are extracted from the context using spaCy and are considered as answers candidates. The summary is used as the context.
       \State The BART model generates questions based on the summary and its entities
       \State A BERT model is fine-tuned for Question Answering on the SQuAD dataset
@@ -72,42 +72,41 @@ QAGS works like this:
       \State We compare the corresponding answers using an answer similarity metric, and we get a final score averaging the answer similarity metric (f1 score) over all questions
     \end{algorithmic}
 \end{algorithm}
-
-\subsection*{SUMMAQA}
-SUMMAQA works similarly to QAGS, the main difference is that there is not a generative model to create the questions, in particular:
-\begin{algorithm}
-    \caption*{SUMMAQA}
-    \begin{algorithmic}[1]
-      \State We find all the entities in the source text (the original ticket) with Spacy
-      \State Create one sentence (which will be our question) for each entity. We keep only the sentence in which the entity is if there are more sentences. The entity will be masked. Ex: "Yesterday I went to Paris" becomes "Yesterday I went to [MASK]"
-      \State The MASKED entities will be the True labels when calculating the metrics
-      \State We answer to the questions generated before using a fine-tuned version of BERT model, using both the source and the summarization/anonymization as contexts
-      \State We compare the answers and calculate the f1 score for both contexts
-    \end{algorithmic}
-\end{algorithm}
-\subsection*{Cosine Similarity}
-We measured the cosine similarity between sentence embeddings of original text and summarization. The sentence embeddings used were calculated using Sentence-BERT, a modified version of the pretrained BERT network that uses siamese networks to obtain more meaningful embedding of the sentence, compared to getting the embedding of the [CLS] token or to average all the other embeddings.
-
-%TODO: maybe put little schema of Siamese network of sentence-bert
-
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/qa_models_qags.png}
     \caption{Schema of QAGS}
     \label{fig:schema_qags}
 \end{figure}    
-
+\newpage
+\subsection{SUMMAQA}
+SUMMAQA works similarly to QAGS, the main difference is that there is not a generative model to create the questions, in particular:
+\begin{algorithm}[h]
+    \caption*{SUMMAQA}
+    \begin{algorithmic}[1]
+      \State We find all the entities in the source text (the original ticket) with Spacy
+      \State Create one sentence (which will be our question) for each entity. We keep only the sentence in which the entity is if there are more sentences. The entity will be masked. Ex: "Yesterday I went to Paris" becomes "Yesterday I went to [MASK]"
+      \State The MASKED entities will be the True labels when calculating the metrics
+      \State We answer the questions generated before using a fine-tuned version of BERT model, using both the source and the summarization/anonymization as contexts
+      \State We compare the answers and calculate the f1 score for both contexts
+    \end{algorithmic}
+\end{algorithm}
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/qa_models_summaqa.png}
     \caption{Schema of SUMMAQA}
     \label{fig:schema_summa_qa}
-\end{figure}    
-
+\end{figure} 
+\newpage   
+\subsection{Cosine Similarity}
+We measured the cosine similarity between sentence embeddings of original text and summarization. The sentence embeddings used were calculated using Sentence-BERT, a modified version of the pretrained BERT network that uses siamese networks to obtain more meaningful embedding of the sentence, compared to getting the embedding of the [CLS] token or to average all the other embeddings.
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/cosine_similarity.png}
     \caption{Schema of Cosine Similarity for }
     \label{fig:schema_cosine_similarity}
 \end{figure}    
-
+\subsection*{Result}
+After testing all of the three methods described before, the one chosen was QAGS. The main reason why is its flexibility. Right now it was not implemented, but in future works it could be possible to add to the questions automatically generated by BART some questions written by the users to check whether a piece of information has been anonymized or not. \\
+However, the numeric results are difficult to interpret, because sometimes we want to retain some information from the original text and sometimes we would prefer the information to be removed. 
+%TODO: maybe put little schema of Siamese network of sentence-bert
 
 
 
