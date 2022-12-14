@@ -112,8 +112,8 @@ Some of the surveys' metrics change a bit compared to the first table, this is d
 
 \subsection*{Topic analysis}
 Topic modeling is a type of statistical modeling technique used to discover the hidden topics and patterns in a corpus of text. It is a type of unsupervised machine learning method that automatically discovers topics from a collection of documents by analyzing words and phrases in each document. Topics are usually represented by word clusters or distributions that are related to each other. Topic modeling can be used to generate meaningful summaries about large collections of documents. \\
-We used topic modeling to visualize in a summarized form the major topics of our dataset and to verify that the topics created correspond to the ones in the taxonomy. \\
-The model of topic modeling we chose is BERTopic\cite{grootendorst2022bertopic}. BERTopic generates document embedding with pre-trained transformer-based language models, clusters these embeddings, and finally, generates topic representations with the class-based TF-IDF procedure
+We used topic modeling to visualize in a summarized form the major topics of our dataset and to verify that the topics created correspond to the ones in the taxonomy.\todo[inline]{one could ask how the topic analysis on the manually-produced dataset relates to the generated one, what are similarities/differences etc. The reason is clearly stated but the question may arise, if you have the data, it might be worth including some words on this aspect.} \\
+The model of topic modeling we chose is BERTopic\cite{grootendorst2022bertopic}. BERTopic generates document embedding with pre-trained transformer-based language models, clusters these embeddings, and finally, generates topic representations with the class-based TF-IDF\todo[inline]{Term Frequency-Inverse Document Frequency (TF-IDF)} procedure
 \begin{algorithm}
     \caption*{BERTopic}
     \begin{algorithmic}[1]
