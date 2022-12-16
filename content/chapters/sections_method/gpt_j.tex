@@ -1,4 +1,6 @@
 \section{GPT-J}
+\label{sec:gpt_j}
+
 The generative model used to create the tickets is GPT-J, an open source 6 billion parameter, autoregressive text generation model trained on The Pile dataset released by EleutherAI. \\
 The Pile dataset\cite{gao2020pile} is an 825 GiB English text corpus composed by 22 diverse subsets, which can be grouped in 5 categories:
 \begin{itemize}
@@ -9,6 +11,7 @@ The Pile dataset\cite{gao2020pile} is an 825 GiB English text corpus composed by
     \item Misc ( \textit{Github}, ... )
 \end{itemize}
 \subsection{Parameters}
+\label{sec:parameters}
 The parameters used for the generation of the next token are:
 \begin{itemize}
     \item \textit{min\_length}: minimum number of words created by a round of gpt generation
@@ -188,5 +191,5 @@ According to the researchers that published GPT-J\cite{rope-eleutherai}, using R
 \noindent
 \begin{minipage}{\linewidth}
     \includegraphics[width=\linewidth]{images/rotary_embedding_from_paper.PNG}
-    \captionof{figure}{Implementation of RoPE, Image taken from original paper}
+    \captionof{figure}{Implementation of RoPE, Image taken from original paper\cite{su2021roformer}}
 \end{minipage}%

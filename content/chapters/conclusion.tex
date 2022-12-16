@@ -1,0 +1,12 @@
+\chapter{Conclusion}
+\label{sec:conclusion}
+
+Firstly, we developed a taxonomy of HR tickets and created a series of templates for each category. We discussed the considerations behind constructing the templates and then researched free-open datasets related to each category. We employed privacy-preserving techniques such as Bayesian Networks to process the datasets. \\
+Then, we identified the state-of-the-art models for text generation, followed by a discussion of their respective novelties. After that, we discussed the generative model chosen by us, GPT-J, and the reasonings behind the decision. We explained in detail the theory behind Transformers and the novelties of GPT-J with respect to the other generative models. \\
+We examined the model's ability to generate texts from two angles: we looked how the inputs influence the inputs and how each neuron of the model behaves scross different steps of the generation. \\
+We conducted a survey in order to demonstrate that our dataset could resemble real tickets and that the tickets created by our application could be used to train machine learning models which worked also in real scenarios. \\
+Specifically we tested the usefulness of the dataset on three different use cases: classification of tickets, anonymization of tickets and named entity recognition. \\
+For the classification of tickets we trained and tested two different models. 
+Whereas for the anonymization task, we used a novel approach that summerizes and rewrites the original text. Lastly, we experimented a classical named entity recognition model on our dataset and, after achieving not satisfying results, we developed a new technique that unifies a text classification task with named entity recognition.
+
+We achieved good results on all three different tasks, therefore we can confidently state that the dataset we built could be used to train ML models for real-world applications. We recognize that each company has a distinct taxonomy for tickets, so we developed the \textit{Ticket Generator} application to facilitate the adaptation to different contexts.

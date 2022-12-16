@@ -1,6 +1,6 @@
 \clearpage
 \section{Named Entity Recognition}
-
+\label{sec:ner}
 Named entity recognition is the process of automatically identifying and classifying named entities in a text. This can include identifying and categorizing named entities such as people, organizations, locations, and so on. \\
 NER systems might be used to automatically extract information from a large collection of documents, such as identifying all mentions of specific named entities or analyzing the relationships between different named entities. \\
 
@@ -67,6 +67,7 @@ With this method, we were able to identify entities in only 6272 tickets out of 
 \end{table}
 
 \subsection{Classical NER}
+\label{sec:classical_ner}
 Token classification is a common technique used in NER to identify and classify named entities in a text. In token classification, the text is first divided into individual tokens, which are typically words or phrases. The model then predicts a label for each token, indicating the type of named entity it represents.\\
 To assign the labels to the tokens we used the BIO(Beginning, Inside, Outside) format, where the B tag is used for the first token of an entity, the I tag for the rest of the tokens of the entity and lastly the O tag is used for the tokens that do not belong to any entities. \\
 Example:
@@ -102,6 +103,7 @@ Example partial match:
 The main problem we encountered was that the NER model was not able to recognize the different entities of the same type depending on the context. For example, the model could not recognize the difference between a date of start absence ( entity of request of time off due to health reasons) and a date of travel ( entity of request of refund for travel).
 
 \subsection{Our approach to NER}
+\label{sec:ner_nc}
 To overcome the limits of the first approach, we developed a new approach based on transfer learning and sentence classification. \\
 The main intuition behind the new approach is to use the pre-trained spacy NER model and exploit the entities found by the base model to extract our entities. \\
 First of all, we build a dictionary of the matchings between entities of Spacy and our entities. We decided to work on a subset of our entities and not consider all the entities that did not have a clear matching with Spacy entities. In \autoref{table:entities_match} we show all the matchings. 

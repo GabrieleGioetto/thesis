@@ -1,4 +1,5 @@
 \section{Ticket Generation}
+\label{sec:ticket_generation}
 For each HR ticket, we create a synthetic employee. Depending on the category of the ticket we want to generate, the employee can have different features. For all tickets' categories, the employees have some common features: \textit{name}, \textit{first name}, \textit{last name}, \textit{nationality}, \textit{country}, \textit{email}, \textit{company}, \textit{company's email} and \textit{ticket date}.\\
 All these information are created exploiting the Python library \textit{Faker}\cite{Faraglia_Faker}. The nationality and the company's country are selected from the extendible list \{ USA, Germany, Italy, Spain, France \}. All other information are created accordingly to the country picked. So for example, if the country of birth of the employee is Italy, then the generated name will be Italian. \\
 Then, once the employees are generated, the information specific to the ticket category, the ones created starting from the open datasets as mentioned before, are concatenated to the general information of the employees. \\
@@ -51,6 +52,7 @@ A general schema of the generation is shown in \autoref{fig:schema_topic_generat
 
 
 \subsection*{Templates}
+\label{sec:templates}
 Generative Pre-trained Transformer (GPT)\todo{added the acronym here} \cite{radford2018improving} models take in a prompt, or context, and generate text from it. The prompts typically take the form of a few sentences or a paragraph, and the models generate sentences that fit the context of the prompt. By manipulating the prompt, users can generate text of various tones, topics, and styles. \\
 The GPT models are also capable of completing tasks such as question answering, machine translation, and summarization in an unsupervised manner\cite{radford2019language}. By providing a prompt with the task and context, the models can generate accurate results that address the specific context and task. For example, summarization tasks require a prompt to provide the necessary data so that the model can deliver a correct summary of the text. \\
 Changing the prompt of GPT can change the tone, topics, and style of the generated text. Depending on the prompt, GPT models can generate text ranging from creative stories to technical summaries. The tone and style of the text can range from humorous to academic, depending on the prompt. As the prompt changes, the model will also adjust to reflect the context of the prompt. \\

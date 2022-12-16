@@ -1,6 +1,6 @@
 \clearpage
 \section{Anonymization}
-
+\label{sec:anonymization}
 Anonymization of personal data refers to the process of removing personally identifiable information (PII) from data sets so that the individuals represented in the data cannot be identified. This is accomplished by either completely removing or replacing identifiable data with generic values. The purpose of anonymization is to protect the privacy of individuals while still allowing the data to be used for legitimate purposes. \\
 Most of the recent implementations of anonymization work by masking the personal information of a person, such as names and surnames, telephone numbers, addresses, credit card numbers and so on. \\
 One of the most famous libraries for anonymization is Presidio, developed by Microsoft. Presidio exploits pattern recognition with regex and Named Entity Recognition to find all the personal information and mask them. \\
@@ -22,7 +22,7 @@ Sentence redacted by Presidio
 \begin{adjustwidth}{1cm}{}
     The boss of the HR department has made some weird comments about how I dress 
 \end{adjustwidth}
-Our new approach exploits a Sequence to Sequence model called T5 \todo{that stays for Text-To-Text Transfer Transformer}.
+Our new approach exploits a Sequence to Sequence model called T5, which stays for Text-To-Text Transfer Transformer\todo{that stays for Text-To-Text Transfer Transformer}.
 T5 is a model released by Google in 2019, it is a standard encoder-decoder transformer that, unlike BERT, always returns strings as outputs. This is why it is called a sequence-to-sequence model. \\
 T5 is a unified model that can be applied for many downstream tasks, such as sentiment analysis, sentence completion, question answering\dots\\
 In T5 architecture there are \textit{adapted layers} after each feed-forward layer, whose scope is to diminish the number of parameter updates for each fine-tuned model. In fact, \textit{adapted layers} are dense-ReLU-dense blocks that are designed so that their input dimensionality and output dimensionality are equal. This lets us insert them into the Transformer architecture without other changes. When fine-tuning for each different task, only the \textit{adapted layers} and the normalization layers will be updated. This results in a considerable reduction of parameter updates.\\
