@@ -122,7 +122,7 @@ First of all, we build a dictionary of the matchings between entities of Spacy a
     \end{tabular}}
     \caption{Matching of our entities with Spacy entities}\label{table:entities_match}
 \end{table}
-Then, we scan our dataset and look for all categories, the entities shown in \autoref{table:entities_match}. If we find an entity not present in the table, it is filtered out. For each entity, we will have an array of the type [ ENTITY, START\_CHAR, END\_CHAR ] (\autoref{fig:ticket_NER_NC_1}).\\
+Then, we scan our dataset and look, for all categories, the entities shown in \autoref{table:entities_match}. If we find an entity not present in the table, it is filtered out. For each entity, we will have an array of the type [ ENTITY, START\_CHAR, END\_CHAR ] (\autoref{fig:ticket_NER_NC_1}).\\
 \begin{figure}[h] 
     \includegraphics[width=\textwidth]{images/NER_nc_1.png}
     \caption{Ticket NER preprocessing part 1}

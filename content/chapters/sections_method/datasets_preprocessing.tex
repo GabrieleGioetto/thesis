@@ -9,7 +9,7 @@ A Bayesian network is a probabilistic graphical model that measures the conditio
     \label{fig:bayesian_net}
   \end{figure}
 Using the \textit{Absenteeism at work Data Set} we learn conditional probability distributions from data, to which we add a Laplace noise for differential privacy. Then we can sample new data that follow the original distributions, but that are not equal to the original ones. \\
-The absence reasons in the dataset are given as ICD (International Classification of Diseases) codes, to make them more human-readable, we picked for each ICD code the corresponding more frequent diseases.
+The absence reasons in the dataset are given as ICD (International Classification of Diseases) codes. To make them more human-readable, we picked for each ICD code the corresponding more frequent diseases.
 \subsubsection*{National Occupational Employment and Wage Estimates United States}
 In the \textit{National Occupational Employment and Wage Estimates United States} dataset, we sample employees based on the number of people employed in a certain field. Therefore for example since `Retail Sales Workers` consists of 5.4\% of the total occupations, then the sampled employee will have the 5.4\% of possibility to have as occupation `Retail Sales Worker`. \\
 The current salary of the employee is calculated by adding Gaussian noise to the average salary of the employee's occupation, and then the salary raise requested is picked randomly between 5\%-10\%. 
